@@ -4,7 +4,18 @@ apply plugin: "jetty"
 war.archiveName = "talkos"
 
 dependencies {
-    compile "javax.servlet:javax.servlet-api:3.1.0"
+
+    /*Servlet API*/
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    /*Jersey dependencies*/
+    compile 'com.sun.jersey:jersey-server:1.18.1'
+    compile 'com.sun.jersey.contribs:jersey-guice:1.18.1'
+
+    /*Test dependencies*/
+    testCompile 'com.sun.jersey:jersey-client:1.18.1'
+    testCompile 'com.sun.jersey:jersey-grizzly2:1.18.1'
+
 }
 
 httpPort = 8081
