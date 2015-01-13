@@ -1,18 +1,16 @@
-package ua.vn.talkos.controllers;
+package ua.vn.talkos.rest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by oleg.sukhov
  */
 @RestController
-public class AuthenticateController {
+public class AuthenticateRestController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping("/test")
     public String test() {
-        System.out.println("hello");
         return "hello";
     }
 }
