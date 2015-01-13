@@ -1,23 +1,18 @@
 package ua.vn.talkos.controllers;
 
-import com.google.inject.Singleton;
-import com.google.inject.servlet.RequestScoped;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by oleg.sukhov
  */
-@Path("test")
-@RequestScoped
+@RestController
 public class AuthenticateController {
 
-    @Path("/hello")
-    @GET
-    @Produces("text/plain")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String test() {
+        System.out.println("hello");
         return "hello";
     }
 }
