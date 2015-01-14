@@ -1,0 +1,1 @@
+var talkos = angular.module('talkos', ['ngRoute']);
