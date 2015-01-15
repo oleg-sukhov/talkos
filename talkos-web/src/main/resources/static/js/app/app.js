@@ -1,5 +1,6 @@
 var talkos = angular.module('talkos', [
-    'ngRoute'
+    'ngRoute',
+    'ui.bootstrap'
 ]);
 
 talkos.config(['$routeProvider',

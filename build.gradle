@@ -2,6 +2,7 @@ allprojects {
 
     ext {
         springBoot = '1.2.1.RELEASE'
+        springLoaded = '1.2.0.RELEASE'
         testNG = '6.8.8'
     }
 
@@ -14,6 +15,7 @@ allprojects {
 subprojects {
 
     apply plugin: 'java'
+
     group = 'ua.vn.talkos'
     version = '1.0'
     sourceCompatibility = 1.8
