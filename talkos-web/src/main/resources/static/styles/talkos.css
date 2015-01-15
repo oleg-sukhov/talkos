@@ -1,0 +1,20 @@
+html, body {
+    background-image: url(../images/background.jpg);
+}
+
+/*Login page styles*/
+.login-container {
+    margin-top: 15%;
+}
+
+.login-container > .panel-body {
+    padding: 5%;
+}
+
+.user-input, .password-input {
+    padding-bottom: 5%;
+}
+
+.user-input > .glyphicon, .password-input > .glyphicon {
+    top: 0;
+}
