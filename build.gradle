@@ -1,8 +1,9 @@
 allprojects {
 
     ext {
-        springBoot = '1.2.1.RELEASE'
-        springLoaded = '1.2.0.RELEASE'
+        servlet = '3.1.0'
+        springSecurity = '3.2.5.RELEASE'
+        springMvc = '4.1.4.RELEASE'
         testNG = '6.8.8'
     }
 

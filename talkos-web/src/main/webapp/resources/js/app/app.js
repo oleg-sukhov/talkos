@@ -7,7 +7,7 @@ talkos.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/login', {
-                templateUrl: 'js/app/login/login.html',
+                templateUrl: 'resources/js/app/login/login.html',
                 controller: 'LoginController'
             }).
             otherwise({
