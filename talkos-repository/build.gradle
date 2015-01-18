@@ -1,0 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.flywaydb:flyway-gradle-plugin:3.1"
+    }
+}
+
+apply plugin: 'flyway'
+
+flyway {
+    user = 'os'
+    password = 'satellite'
+    url = 'jdbc:postgresql://localhost:5432/talkos'
+    locations = ['classpath:ua/vn/talkos/sql']
+}
+
+dependencies {
+    /*PostgeSQL*/
+    compile("org.postgresql:postgresql:$postgreSQLVersion")
+
+    /*MyBatis*/
+    compile("org.mybatis:mybatis:$myBatisVersion")
+}

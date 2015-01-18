@@ -1,10 +1,13 @@
 allprojects {
 
     ext {
-        servlet = '3.1.0'
-        springSecurity = '3.2.5.RELEASE'
-        springMvc = '4.1.4.RELEASE'
-        testNG = '6.8.8'
+        servletVersion = '3.1.0'
+        springSecurityVersion = '3.2.5.RELEASE'
+        springMvcVersion = '4.1.4.RELEASE'
+        testNGVersion = '6.8.8'
+        myBatisVersion = '3.2.8'
+        flywayVersion = '3.1'
+        postgreSQLVersion = '9.3-1102-jdbc41'
     }
 
     repositories {
@@ -18,11 +21,11 @@ subprojects {
     apply plugin: 'java'
 
     group = 'ua.vn.talkos'
-    version = '1.0'
+    version = '0.0.1'
     sourceCompatibility = 1.8
 
     dependencies {
-        /*Test dependencies*/
-        testCompile 'org.testng:testng:6.8.8'
+        /*test*/
+        testCompile "org.testng:testng:$testNGVersion"
     }
 }

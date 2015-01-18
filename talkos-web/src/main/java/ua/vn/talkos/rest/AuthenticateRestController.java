@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by oleg.sukhov
+ * @author oleg.sukhov
  */
 @Controller
 public class AuthenticateRestController {

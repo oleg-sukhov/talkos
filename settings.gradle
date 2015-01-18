@@ -1,4 +1,4 @@
 rootProject.name = 'talkos'
 
-include 'talkos-web'
+include 'talkos-web', 'talkos-service', 'talkos-repository'
 

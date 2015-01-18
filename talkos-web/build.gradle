@@ -2,12 +2,12 @@ apply plugin: 'war'
 
 war {
     baseName = 'talkos'
-    version =  '0.0.1'
 }
 
 dependencies {
-    compile("javax.servlet:javax.servlet-api:$servlet")
-    compile("org.springframework:spring-webmvc:$springMvc")
-    compile("org.springframework.security:spring-security-web:$springSecurity")
-    compile("org.springframework.security:spring-security-config:$springSecurity")
+    compile project(':talkos-service')
+    compile("javax.servlet:javax.servlet-api:$servletVersion")
+    compile("org.springframework:spring-webmvc:$springMvcVersion")
+    compile("org.springframework.security:spring-security-web:$springSecurityVersion")
+    compile("org.springframework.security:spring-security-config:$springSecurityVersion")
 }
