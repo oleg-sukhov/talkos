@@ -3,11 +3,8 @@ allprojects {
     ext {
         servletVersion = '3.1.0'
         springSecurityVersion = '3.2.5.RELEASE'
-        springMvcVersion = '4.1.4.RELEASE'
+        springVersion = '4.1.4.RELEASE'
         testNGVersion = '6.8.8'
-        myBatisVersion = '3.2.8'
-        flywayVersion = '3.1'
-        postgreSQLVersion = '9.3-1102-jdbc41'
     }
 
     repositories {
@@ -25,7 +22,13 @@ subprojects {
     sourceCompatibility = 1.8
 
     dependencies {
-        /*test*/
+
+        /*Spring*/
+        compile("org.springframework:spring-context:$springVersion")
+        compile("org.springframework:spring-aop:$springVersion")
+        compile("org.springframework:spring-core:$springVersion")
+
+        /*TestNG*/
         testCompile "org.testng:testng:$testNGVersion"
     }
 }
