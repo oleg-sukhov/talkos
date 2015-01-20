@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * @author oleg.sukhov
  */
-public interface UserMapper {
-
-    public List<User> getAllUsers();
+public interface UserRepository {
+    public List<User> loadUsers();
 }

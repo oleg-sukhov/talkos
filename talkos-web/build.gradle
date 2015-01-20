@@ -6,8 +6,8 @@ war {
 
 dependencies {
     compile project(":talkos-service")
-    compile("javax.servlet:javax.servlet-api:$servletVersion")
-    compile("org.springframework:spring-webmvc:$springVersion")
-    compile("org.springframework.security:spring-security-web:$springSecurityVersion")
-    compile("org.springframework.security:spring-security-config:$springSecurityVersion")
+    compile "javax.servlet:javax.servlet-api:$servletVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+    compile "org.springframework.security:spring-security-config:$springSecurityVersion"
 }

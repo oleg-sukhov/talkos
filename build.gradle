@@ -22,11 +22,11 @@ subprojects {
     sourceCompatibility = 1.8
 
     dependencies {
-
         /*Spring*/
-        compile("org.springframework:spring-context:$springVersion")
-        compile("org.springframework:spring-aop:$springVersion")
-        compile("org.springframework:spring-core:$springVersion")
+        compile "org.springframework:spring-context:$springVersion"
+        compile "org.springframework:spring-aop:$springVersion"
+        compile "org.springframework:spring-core:$springVersion"
+        testCompile "org.springframework:spring-test:$springVersion"
 
         /*TestNG*/
         testCompile "org.testng:testng:$testNGVersion"

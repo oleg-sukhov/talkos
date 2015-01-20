@@ -3,6 +3,7 @@ package ua.vn.talkos.config;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ua.vn.talkos.persistence.UserRepository;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -52,5 +54,11 @@ public class RepositoryConfig {
     @Bean
     public DataSourceTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    public UserRepository userRepository() throws Exception {
+        SqlSessionTemplate sessionTemplate = new SqlSessionTemplate(sessionFactory());
+        return sessionTemplate.getMapper(UserRepository.class);
     }
 }

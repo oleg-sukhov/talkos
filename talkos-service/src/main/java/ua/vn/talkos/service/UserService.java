@@ -1,7 +1,12 @@
 package ua.vn.talkos.service;
 
+import ua.vn.talkos.domain.User;
+
+import java.util.List;
+
 /**
- * Created by root on 20.01.15.
+ * @author oleg.sukhov
  */
-public class UserService {
+public interface UserService {
+    public List<User> loadUsers();
 }

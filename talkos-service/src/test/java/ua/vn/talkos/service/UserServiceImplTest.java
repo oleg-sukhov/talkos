@@ -1,7 +1,20 @@
 package ua.vn.talkos.service;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 /**
- * Created by root on 20.01.15.
+ * @author oleg.sukhov
  */
 public class UserServiceImplTest {
+
+    @BeforeMethod
+    public void setup() {
+
+    }
+
+    @Test
+    public void testLoadUsers() {
+
+    }
 }
