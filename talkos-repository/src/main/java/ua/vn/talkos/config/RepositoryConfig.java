@@ -1,30 +1,25 @@
 package ua.vn.talkos.config;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ua.vn.talkos.persistence.UserRepository;
-
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * @author oleg.sukhov
  */
 @Configuration
 @ComponentScan
-//@MapperScan("ua.vn.talkos.persistence")
 @PropertySource(value = "classpath*:ua/vn/talkos/configuration/db.properties", ignoreResourceNotFound = true)
 public class RepositoryConfig {
     public static final String DB_DRIVER_KEY = "database.connection.driver";
@@ -38,38 +33,43 @@ public class RepositoryConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getRequiredProperty(DB_DRIVER_KEY));
-        dataSource.setUrl(env.getRequiredProperty(DB_URL_KEY));
-        dataSource.setUsername(env.getRequiredProperty(DB_USERNAME_KEY));
-        dataSource.setPassword(env.getRequiredProperty(DB_PASSWORD_KEY));
+        dataSource.setDriverClassName("org.postgresql.Driver"/*env.getRequiredProperty(DB_DRIVER_KEY)*/);
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/talkos"/*env.getRequiredProperty(DB_URL_KEY)*/);
+        dataSource.setUsername("os"/*env.getRequiredProperty(DB_USERNAME_KEY)*/);
+        dataSource.setPassword("satellite"/*env.getRequiredProperty(DB_PASSWORD_KEY)*/);
         return dataSource;
     }
 
     @Bean
-    public SqlSessionFactory sessionFactory() throws Exception {
-        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setTypeAliasesPackage("ua.vn.talkos.domain");
-        return sessionFactory.getObject();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        EclipseLinkJpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
+        vendorAdapter.setShowSql(true);
+
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("ua.vn.talkos.entity");
+        factory.setDataSource(dataSource());
+        factory.setJpaProperties(jpaProperties());
+        return factory;
     }
 
     @Bean
-    public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager txManager = new JpaTransactionManager();
+        txManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return txManager;
     }
 
     @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage("ua.vn.talkos.persistence");
-        return configurer;
+    public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
     }
 
 
-    @Bean
-    public UserRepository userRepository() throws Exception {
-        SqlSessionTemplate sessionTemplate = new SqlSessionTemplate(sessionFactory());
-        return sessionTemplate.getMapper(UserRepository.class);
+    private Properties jpaProperties() {
+        Properties properties = new Properties();
+        properties.put("eclipselink.weaving", "static");
+        return properties;
     }
 
     @Bean

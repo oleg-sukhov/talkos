@@ -1,6 +1,6 @@
 package ua.vn.talkos.service;
 
-import ua.vn.talkos.domain.User;
+import ua.vn.talkos.entity.User;
 
 import java.util.List;
 

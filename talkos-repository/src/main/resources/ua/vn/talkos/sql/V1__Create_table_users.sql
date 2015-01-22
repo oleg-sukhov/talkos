@@ -1,5 +1,7 @@
-CREATE  TABLE users (
-  username VARCHAR(45) NOT NULL,
-  password VARCHAR(60) NOT NULL,
-  enabled BOOLEAN NOT NULL DEFAULT true,
-  PRIMARY KEY (username));
+CREATE TABLE "user" (
+  id BIGSERIAL NOT NULL,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(100) NOT NULL,
+  enabled BOOLEAN NOT NULL DEFAULT false,
+  PRIMARY KEY (id)
+);

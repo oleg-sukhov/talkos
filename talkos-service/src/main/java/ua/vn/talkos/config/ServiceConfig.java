@@ -15,8 +15,4 @@ import ua.vn.talkos.service.impl.UserServiceImpl;
 @Import(RepositoryConfig.class)
 public class ServiceConfig {
 
-    @Bean
-    public UserService userService() {
-        return new UserServiceImpl();
-    }
 }

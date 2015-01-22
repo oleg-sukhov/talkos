@@ -1,8 +1,8 @@
 package ua.vn.talkos.service.impl;
 
 import org.springframework.stereotype.Service;
-import ua.vn.talkos.domain.User;
-import ua.vn.talkos.persistence.UserRepository;
+import ua.vn.talkos.entity.User;
+import ua.vn.talkos.repository.UserRepository;
 import ua.vn.talkos.service.UserService;
 
 import javax.annotation.Resource;

@@ -1,7 +1,6 @@
 package ua.vn.talkos.repository;
 
 import org.dbunit.IDatabaseTester;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +11,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ua.vn.talkos.config.RepositoryTestConfig;
-import ua.vn.talkos.domain.User;
-import ua.vn.talkos.persistence.UserRepository;
+import ua.vn.talkos.entity.User;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
