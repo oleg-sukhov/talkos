@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ua.vn.talkos.persistence.UserRepository">
-    <cache />
+
+    <resultMap type="ua.vn.talkos.domain.User" id="User">
+        <id column="id" property="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
     <select id="getAllUsers" resultType="User">
         SELECT username, password FROM users
     </select>

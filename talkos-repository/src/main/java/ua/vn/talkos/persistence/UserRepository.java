@@ -1,7 +1,6 @@
 package ua.vn.talkos.persistence;
 
 import ua.vn.talkos.domain.User;
-
 import java.util.List;
 
 /**

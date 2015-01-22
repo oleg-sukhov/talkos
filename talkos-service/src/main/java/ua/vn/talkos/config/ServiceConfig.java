@@ -1,8 +1,11 @@
 package ua.vn.talkos.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import ua.vn.talkos.service.UserService;
+import ua.vn.talkos.service.impl.UserServiceImpl;
 
 /**
  * @author oleg.sukhov
@@ -11,4 +14,9 @@ import org.springframework.context.annotation.Import;
 @ComponentScan
 @Import(RepositoryConfig.class)
 public class ServiceConfig {
+
+    @Bean
+    public UserService userService() {
+        return new UserServiceImpl();
+    }
 }

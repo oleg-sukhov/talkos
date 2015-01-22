@@ -5,6 +5,7 @@ allprojects {
         springSecurityVersion = '3.2.5.RELEASE'
         springVersion = '4.1.4.RELEASE'
         testNGVersion = '6.8.8'
+        logbackVersion = '1.1.2'
     }
 
     repositories {
@@ -27,6 +28,10 @@ subprojects {
         compile "org.springframework:spring-aop:$springVersion"
         compile "org.springframework:spring-core:$springVersion"
         testCompile "org.springframework:spring-test:$springVersion"
+
+        /*Logback*/
+        compile "ch.qos.logback:logback-classic:$logbackVersion"
+
 
         /*TestNG*/
         testCompile "org.testng:testng:$testNGVersion"

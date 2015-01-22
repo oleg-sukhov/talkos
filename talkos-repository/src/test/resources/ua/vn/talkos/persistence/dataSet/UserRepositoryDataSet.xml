@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <user id="1" name="JoshuaB" password="qwer" enabled="true" />
+    <user id="2" name="TorvaldsL " password="qwer4" enabled="true"/>
+    <user id="3" name="FawlerM" password="qwer2" enabled="true"/>
+    <user id="4" name="BorisovE" password="qwer5" enabled="true"/>
+</dataset>

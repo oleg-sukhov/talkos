@@ -17,8 +17,7 @@ public class RepositoryTestConfig extends RepositoryConfig {
     @Override
     public EmbeddedDatabase dataSource() {
         EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
-        databaseBuilder.addScript("classpath:schema.sql");
-        databaseBuilder.setName("test");
+        databaseBuilder.setName("talks");
         databaseBuilder.setType(EmbeddedDatabaseType.H2);
         return databaseBuilder.build();
     }
