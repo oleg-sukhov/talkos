@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import ua.vn.talkos.config.RepositoryTestConfig;
 import ua.vn.talkos.entity.User;
 
+import javax.annotation.Resource;
 import java.io.FileInputStream;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
 @ContextConfiguration(classes = RepositoryTestConfig.class)
 public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
 
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
     @Autowired
@@ -30,7 +31,7 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @BeforeClass
     public void setUp() throws Exception {
-        IDataSet dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("UserRepositoryDataSet.xml"));
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("ua.vn.talkos.persistence.dataset.UserRepositoryDataSet.xml"));
         databaseTester.setDataSet(dataSet);
         databaseTester.onSetup();
     }
@@ -42,7 +43,7 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testLoadUsers() {
-        List<User> users = userRepository.loadUsers();
+        List<User> users = userRepository.findAll();
         Assert.assertEquals(4, users.size());
     }
 }

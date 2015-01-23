@@ -1,6 +1,7 @@
 package ua.vn.talkos.entity;
 
 import lombok.*;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +12,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Data
-public class User {
-
-    @Id
-    private long id;
+public class User extends AbstractPersistable<Long> {
 
     @Column
     private String username;

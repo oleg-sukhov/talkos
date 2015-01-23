@@ -7,10 +7,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -20,6 +23,8 @@ import java.util.Properties;
  */
 @Configuration
 @ComponentScan
+@EnableTransactionManagement
+@EnableJpaRepositories("ua.vn.talkos.repository")
 @PropertySource(value = "classpath*:ua/vn/talkos/configuration/db.properties", ignoreResourceNotFound = true)
 public class RepositoryConfig {
     public static final String DB_DRIVER_KEY = "database.connection.driver";
