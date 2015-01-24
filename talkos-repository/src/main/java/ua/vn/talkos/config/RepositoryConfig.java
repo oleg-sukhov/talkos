@@ -71,7 +71,7 @@ public class RepositoryConfig {
     }
 
 
-    private Properties jpaProperties() {
+    protected Properties jpaProperties() {
         Properties properties = new Properties();
         properties.put("eclipselink.weaving", "static");
         return properties;

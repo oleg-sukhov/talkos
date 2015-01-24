@@ -1,6 +1,7 @@
 package ua.vn.talkos.repository;
 
 import org.dbunit.IDatabaseTester;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,13 @@ import ua.vn.talkos.config.RepositoryTestConfig;
 import ua.vn.talkos.entity.User;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.List;
+
+import static org.testng.Assert.*;
 
 /**
  * @author oleg.sukhov
@@ -26,14 +32,19 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
     @Resource
     private UserRepository userRepository;
 
-    @Autowired
+    @Resource
     private IDatabaseTester databaseTester;
 
     @BeforeClass
     public void setUp() throws Exception {
-        IDataSet dataSet = new FlatXmlDataSetBuilder().build(new FileInputStream("ua.vn.talkos.persistence.dataset.UserRepositoryDataSet.xml"));
-        databaseTester.setDataSet(dataSet);
+        databaseTester.setDataSet(buildDataSet());
         databaseTester.onSetup();
+    }
+
+    private IDataSet buildDataSet() throws FileNotFoundException, DataSetException {
+        URL url = this.getClass().getResource("/ua/vn/talkos/persistence/dataset/UserRepositoryDataSet.xml");
+        FileInputStream fis = new FileInputStream(new File(url.getPath()));
+        return new FlatXmlDataSetBuilder().build(fis);
     }
 
     @AfterClass
@@ -42,8 +53,25 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void testLoadUsers() {
+    public void testFindAll() {
         List<User> users = userRepository.findAll();
-        Assert.assertEquals(4, users.size());
+        assertNotNull(users);
+        assertEquals(4, users.size());
+    }
+
+    @Test
+    public void testCount() {
+        assertEquals(4, userRepository.count());
+    }
+
+    @Test
+    public void testFindOne() {
+        User user = userRepository.findOne(Long.valueOf(4));
+
+        assertNotNull(user);
+        assertEquals(Long.valueOf(4), user.getId());
+        assertEquals("BorisovE", user.getUsername());
+        assertEquals("qwer5", user.getPassword());
+        assertEquals(true, user.isEnabled());
     }
 }
