@@ -74,4 +74,22 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
         assertEquals("qwer5", user.getPassword());
         assertEquals(true, user.isEnabled());
     }
+
+    @Test
+    public void testFindByUserName() {
+        User firstUser = userRepository.findByUsername("BorisovE");
+        User secondUser = userRepository.findByUsername("JoshuaB");
+
+        assertNotNull(firstUser);
+        assertEquals(Long.valueOf(4), firstUser.getId());
+        assertEquals("BorisovE", firstUser.getUsername());
+        assertEquals("qwer5", firstUser.getPassword());
+        assertEquals(true, firstUser.isEnabled());
+
+        assertNotNull(secondUser);
+        assertEquals(Long.valueOf(1), secondUser.getId());
+        assertEquals("JoshuaB", secondUser.getUsername());
+        assertEquals("qwer", secondUser.getPassword());
+        assertEquals(false, secondUser.isEnabled());
+    }
 }

@@ -1,13 +1,22 @@
 angular.module('talkos')
-    .controller('LoginController', function ($scope) {
-        $scope.loginErrorAlert = { type: 'danger', msg: 'Username or password was incorrect!', visible: false };
+    .controller('LoginController', function ($scope, LoginService) {
 
-        $scope.showLoginErrorAlert = function () {
-            $scope.loginErrorAlert.visible = true;
+        $scope.login = function() {
+            LoginService.login($scope.username, $scope.password);
         };
 
-        $scope.hideLoginErrorAlert = function () {
-            $scope.loginErrorAlert.visible = false;
-        };
+    })
+    .factory("LoginService", function($http) {
+        return {
+            login: function(username, password) {
+                $http.post("/authenticate", {
+                    username: username,
+                    password: password
+                }).success(function(data) {
+                    alert("OK!!!");
+                }).fail(function() {
 
+                });
+            }
+        }
     });

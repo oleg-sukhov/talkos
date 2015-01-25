@@ -25,7 +25,7 @@ import java.util.Properties;
 @ComponentScan
 @EnableTransactionManagement
 @EnableJpaRepositories("ua.vn.talkos.repository")
-@PropertySource(value = "classpath*:ua/vn/talkos/configuration/db.properties", ignoreResourceNotFound = true)
+@PropertySource("classpath:ua/vn/talkos/configuration/db.properties")
 public class RepositoryConfig {
     public static final String DB_DRIVER_KEY = "database.connection.driver";
     public static final String DB_URL_KEY = "database.connection.url";
@@ -38,10 +38,10 @@ public class RepositoryConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver"/*env.getRequiredProperty(DB_DRIVER_KEY)*/);
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/talkos"/*env.getRequiredProperty(DB_URL_KEY)*/);
-        dataSource.setUsername("os"/*env.getRequiredProperty(DB_USERNAME_KEY)*/);
-        dataSource.setPassword("satellite"/*env.getRequiredProperty(DB_PASSWORD_KEY)*/);
+        dataSource.setDriverClassName(env.getRequiredProperty(DB_DRIVER_KEY));
+        dataSource.setUrl(env.getRequiredProperty(DB_URL_KEY));
+        dataSource.setUsername(env.getRequiredProperty(DB_USERNAME_KEY));
+        dataSource.setPassword(env.getRequiredProperty(DB_PASSWORD_KEY));
         return dataSource;
     }
 

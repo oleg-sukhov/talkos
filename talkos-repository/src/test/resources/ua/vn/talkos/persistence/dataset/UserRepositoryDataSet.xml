@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <user id="1" username="JoshuaB" password="qwer" enabled="true" />
-    <user id="2" username="TorvaldsL " password="qwer4" enabled="true"/>
-    <user id="3" username="FawlerM" password="qwer2" enabled="true"/>
-    <user id="4" username="BorisovE" password="qwer5" enabled="true"/>
+    <users id="1" username="JoshuaB" password="qwer" enabled="false" />
+    <users id="2" username="TorvaldsL " password="qwer4" enabled="true"/>
+    <users id="3" username="FawlerM" password="qwer2" enabled="true"/>
+    <users id="4" username="BorisovE" password="qwer5" enabled="true"/>
 </dataset>
