@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.vn.talkos.service.UserService;
 
 import javax.annotation.Resource;
+import java.security.Principal;
 
 /**
  * @author oleg.sukhov
@@ -19,7 +20,7 @@ public class AuthenticateRestController {
     private UserService service;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public void authenticate(@PathVariable String username, @PathVariable String password) {
-        System.out.println("User -> <" + username +">, password -> <" + password + ">");
+    public Principal user(Principal user) {
+        return user;
     }
 }
