@@ -32,6 +32,7 @@ html, body {
 
 .panel-body > .alert {
     padding: 2%;
+    text-align: center;
 }
 
 /*|Login page styles|*/

@@ -1,14 +1,14 @@
 angular.module('talkos')
     .controller('LoginController', function ($scope, LoginService) {
 
-        LoginService.authenticate();
+        //LoginService.authenticate();
         $scope.credentials = {};
         $scope.login = function() {
             LoginService.login($scope);
         }
     })
 
-    .factory("LoginService", function ($http, $rootScope) {
+    .factory("LoginService", function ($http, $rootScope, $location) {
         return {
             authenticate: function (callback) {
 
@@ -24,25 +24,36 @@ angular.module('talkos')
 
             login: function (controllerScope) {
 
-                $http.post('login', {credentials: controllerScope.credentials}, {
+                var data = this.prepareData(controllerScope);
+
+                $http({
+                    url: '/login',
+                    method: "POST",
                     headers: {
-                        "content-type": "application/x-www-form-urlencoded"
-                    }
-                }).success(function (data) {
-                    this.authenticate(function () {
-                        if ($rootScope.authenticated) {
-                            $location.path("/");
-                            controllerScope.error = false;
-                        } else {
-                            $location.path("/login");
-                            controllerScope.error = true;
-                        }
-                    });
-                }).error(function (data) {
+                        "Content-type": "application/x-www-form-urlencoded"
+                    },
+                    data: data
+                }).success(function (data, status, headers) {
+                    $location.path("/home");
+                    controllerScope.error = false;
+                }).error(function (data, status, headers) {
                     $location.path("/login");
                     controllerScope.error = true;
-                    $rootScope.authenticated = false;
+                    controllerScope.loginErrorAlert = {
+                        type: 'danger',
+                        msg: 'Username or password was incorrect'
+                    }
                 })
+            },
+
+            prepareData: function(controllerScope) {
+                var data = [];
+                data.push("username=");
+                data.push(controllerScope.credentials.username);
+                data.push("&password=");
+                data.push(controllerScope.credentials.password);
+                return data.join("");
             }
+
         }
     });
