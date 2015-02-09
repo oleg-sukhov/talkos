@@ -4,28 +4,22 @@ angular.module('talkos')
         //LoginService.authenticate();
         $scope.credentials = {};
         $scope.login = function() {
-            LoginService.login($scope);
+            LoginService.login($scope, "/home");
         }
     })
 
     .factory("LoginService", function ($http, $rootScope, $location) {
         return {
-            authenticate: function (callback) {
-
-                $http.get('authenticate').success(function (data) {
-                    $rootScope.authenticated = !!data.name;
-                    callback && callback();
+            isAuthenticated: function (callback) {
+                $http.get('/isAuth').success(function (data) {
+                    return true;
                 }).error(function () {
-                    $rootScope.authenticated = false;
-                    callback && callback();
+                    return false;
                 });
-
             },
 
-            login: function (controllerScope) {
-
+            login: function (controllerScope, pathToRedirect) {
                 var data = this.prepareData(controllerScope);
-
                 $http({
                     url: '/login',
                     method: "POST",
@@ -34,7 +28,7 @@ angular.module('talkos')
                     },
                     data: data
                 }).success(function (data, status, headers) {
-                    $location.path("/home");
+                    $location.path(pathToRedirect);
                     controllerScope.error = false;
                 }).error(function (data, status, headers) {
                     $location.path("/login");
@@ -42,7 +36,7 @@ angular.module('talkos')
                     controllerScope.loginErrorAlert = {
                         type: 'danger',
                         msg: 'Username or password was incorrect'
-                    }
+                    };
                 })
             },
 

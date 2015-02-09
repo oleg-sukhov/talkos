@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InitializeController {
     @RequestMapping("/")
     public String initialize() {
+
+
+
         return "/WEB-INF/index.jsp";
     }
 }
