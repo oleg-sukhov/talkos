@@ -9,4 +9,6 @@ dependencies {
     compile "javax.servlet:javax.servlet-api:$servletVersion"
     compile "org.springframework:spring-webmvc:$springVersion"
     compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabind"
+
 }

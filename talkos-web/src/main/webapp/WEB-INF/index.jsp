@@ -17,5 +17,7 @@
 <!--custom scripts-->
 <script src="${pageContext.request.contextPath}/resources/js/app/app.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app/login/login.controller.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app/login/authenticate.interceptor.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app/home/home.controller.js"></script>
 </body>
 </html>

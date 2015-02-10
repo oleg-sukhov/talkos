@@ -48,7 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .failureHandler(new AuthenticationErrorHandler())
                     .usernameParameter(USERNAME_KEY)
-                    .passwordParameter(PASSWORD_KEY);
+                    .passwordParameter(PASSWORD_KEY)
+                .and()
+                    .logout();
     }
 
     private CsrfTokenRepository csrfTokenRepository() {

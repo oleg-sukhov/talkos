@@ -4,32 +4,41 @@ var talkos = angular.module('talkos', [
     'ngCookies'
 ]);
 
-talkos.config(['$routeProvider',
-    function($routeProvider) {
+talkos.config(function ($routeProvider, $httpProvider) {
         $routeProvider.
             when('/login', {
                 templateUrl: 'resources/js/app/login/login.html',
-                controller: 'LoginController'
+                controller: 'AuthenticateController'
             }).
             when('/home', {
                 templateUrl: 'resources/js/app/home/home.html',
                 controller: 'HomeController',
                 resolve: {
-                    factory: checkRouting
+                    factory: checkAuthenticated
                 }
             }).
             otherwise({
                 redirectTo: '/home'
             });
-    }]);
 
-var checkRouting= function ($q, $rootScope, $location, LoginService) {
-    if (LoginService.isAuthenticated()) {
-        return true;
-    } else {
-        var defered = $q.defer();
-        defered.reject();
-        $location.path("/login");
-        return defered.promise;
+        $httpProvider.interceptors.push('AuthenticateInterceptor');
     }
+);
+
+var checkAuthenticated = function ($q, $rootScope, $location, AuthenticationService) {
+    var deferred = $q.defer();
+
+    var successCallback = function(response) {
+        var isAuthenticated = response.authenticated;
+        isAuthenticated ? deferred.resolve() : failureCallback(response);
+    };
+
+    var failureCallback = function(response) {
+        deferred.reject();
+        $location.url('/login');
+    };
+
+    AuthenticationService.isAuthenticated(successCallback, failureCallback);
+
+    return deferred.promise;
 };

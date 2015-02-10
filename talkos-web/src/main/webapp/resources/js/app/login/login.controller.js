@@ -1,21 +1,26 @@
 angular.module('talkos')
-    .controller('LoginController', function ($scope, LoginService) {
+    .controller('AuthenticateController', function ($scope, AuthenticationService) {
 
-        //LoginService.authenticate();
         $scope.credentials = {};
         $scope.login = function() {
-            LoginService.login($scope, "/home");
+            AuthenticationService.login($scope, "/home");
+        };
+
+        $scope.logout = function() {
+            AuthenticationService.logout($scope, "/login");
         }
     })
 
-    .factory("LoginService", function ($http, $rootScope, $location) {
+    .factory("AuthenticationService", function ($http, $rootScope, $location) {
         return {
-            isAuthenticated: function (callback) {
-                $http.get('/isAuth').success(function (data) {
-                    return true;
-                }).error(function () {
-                    return false;
-                });
+            isAuthenticated: function (successCallback, failureCallback) {
+                return $http({
+                    url: '/isAuthenticated',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    data: ''
+                }).success(successCallback).error(failureCallback);
             },
 
             login: function (controllerScope, pathToRedirect) {
@@ -40,6 +45,21 @@ angular.module('talkos')
                 })
             },
 
+            logout: function (pathToRedirect) {
+                $http({
+                    url: '/logout',
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/x-www-form-urlencoded"
+                    },
+                    data: ""
+                }).success(function (data, status, headers) {
+                    $location.path(pathToRedirect);
+                }).error(function (data, status, headers) {
+                    $location.path("/login");
+                })
+            },
+
             prepareData: function(controllerScope) {
                 var data = [];
                 data.push("username=");
@@ -48,6 +68,5 @@ angular.module('talkos')
                 data.push(controllerScope.credentials.password);
                 return data.join("");
             }
-
         }
     });
