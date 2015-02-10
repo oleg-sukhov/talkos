@@ -12,33 +12,47 @@ talkos.config(function ($routeProvider, $httpProvider) {
             }).
             when('/home', {
                 templateUrl: 'resources/js/app/home/home.html',
-                controller: 'HomeController',
-                resolve: {
-                    factory: checkAuthenticated
-                }
+                controller: 'HomeController'
             }).
             otherwise({
                 redirectTo: '/home'
             });
-
-        $httpProvider.interceptors.push('AuthenticateInterceptor');
     }
 );
 
-var checkAuthenticated = function ($q, $rootScope, $location, AuthenticationService) {
-    var deferred = $q.defer();
+talkos.run(function ($rootScope, $location, AuthenticationChecker) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        if (!AuthenticationChecker.isAuthenticate()) {
+            if (next.templateUrl == "resources/js/app/login/login.html") {
+            } else {
+                $location.path("/login");
+            }
+        }
+    });
+});
 
-    var successCallback = function(response) {
-        var isAuthenticated = response.authenticated;
-        isAuthenticated ? deferred.resolve() : failureCallback(response);
-    };
+talkos.factory('AuthenticationChecker', ["$q", "$rootScope", "$location", "$timeout", "AuthenticationService",
+    function ($q, $rootScope, $location, $timeout, AuthenticationService) {
+        return {
+            isAuthenticate: function () {
+                var deferred = $q.defer();
 
-    var failureCallback = function(response) {
-        deferred.reject();
-        $location.url('/login');
-    };
+                var successCallback = function (response) {
+                    var isAuthenticated = response.authenticated;
+                    isAuthenticated ? deferred.resolve() : failureCallback(response);
+                };
 
-    AuthenticationService.isAuthenticated(successCallback, failureCallback);
+                var failureCallback = function (response) {
+                    $location.path("/login");
+                    deferred.reject();
+                };
 
-    return deferred.promise;
-};
+                AuthenticationService.isAuthenticated(successCallback, failureCallback);
+
+                return $timeout(function() {
+                    return deferred.promise;
+                }, 2000);
+                //return deferred.promise;
+            }
+        };
+    }]);
