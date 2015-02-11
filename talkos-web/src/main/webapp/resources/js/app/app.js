@@ -4,7 +4,7 @@ var talkos = angular.module('talkos', [
     'ngCookies'
 ]);
 
-talkos.config(function ($routeProvider, $httpProvider) {
+talkos.config(function ($routeProvider, AuthenticationChecker) {
         $routeProvider.
             when('/login', {
                 templateUrl: 'resources/js/app/login/login.html',
@@ -12,7 +12,10 @@ talkos.config(function ($routeProvider, $httpProvider) {
             }).
             when('/home', {
                 templateUrl: 'resources/js/app/home/home.html',
-                controller: 'HomeController'
+                controller: 'HomeController',
+                resolve: {
+                    isAuthenticated: AuthenticationChecker.isAuthenticate()
+                }
             }).
             otherwise({
                 redirectTo: '/home'
@@ -20,18 +23,19 @@ talkos.config(function ($routeProvider, $httpProvider) {
     }
 );
 
-talkos.run(function ($rootScope, $location, AuthenticationChecker) {
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (!AuthenticationChecker.isAuthenticate()) {
-            if (next.templateUrl == "resources/js/app/login/login.html") {
-            } else {
-                $location.path("/login");
-            }
-        }
-    });
-});
+//talkos.run(function ($rootScope, $location, AuthenticationChecker) {
+//    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+//        if (!isLoginPageUrl(next.templateUrl) && !AuthenticationChecker.isAuthenticate()) {
+//            $location.path("/login");
+//        }
+//    });
+//
+//    var isLoginPageUrl = function(url) {
+//        return url == "resources/js/app/login/login.html";
+//    }
+//});
 
-talkos.factory('AuthenticationChecker', ["$q", "$rootScope", "$location", "$timeout", "AuthenticationService",
+talkos.service('AuthenticationChecker', ["$q", "$rootScope", "$location", "$timeout", "AuthenticationService",
     function ($q, $rootScope, $location, $timeout, AuthenticationService) {
         return {
             isAuthenticate: function () {
@@ -43,16 +47,12 @@ talkos.factory('AuthenticationChecker', ["$q", "$rootScope", "$location", "$time
                 };
 
                 var failureCallback = function (response) {
-                    $location.path("/login");
+                    //$location.path("/login");
                     deferred.reject();
                 };
 
                 AuthenticationService.isAuthenticated(successCallback, failureCallback);
-
-                return $timeout(function() {
-                    return deferred.promise;
-                }, 2000);
-                //return deferred.promise;
+                return deferred.promise;
             }
         };
     }]);

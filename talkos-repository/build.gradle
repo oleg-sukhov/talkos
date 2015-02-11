@@ -20,9 +20,13 @@ buildscript {
 apply plugin: 'flyway'
 
 flyway {
-    user = 'os'
+    /*user = 'os'
     password = 'satellite'
     url = 'jdbc:postgresql://localhost:5432/talkos'
+    locations = ['classpath:ua/vn/talkos/sql']*/
+    user = 'sa'
+    password = ''
+    url = 'jdbc:h2:tcp://localhost/~/talkos'
     locations = ['classpath:ua/vn/talkos/sql']
 }
 
@@ -34,11 +38,14 @@ dependencies {
     /*PostgeSQL*/
     compile "org.postgresql:postgresql:$postgreSQLVersion"
 
+    /*H2*/
+    compile "com.h2database:h2:$h2Version"
+
     /*EclipseLink*/
     compile "org.eclipse.persistence:org.eclipse.persistence.jpa:$eclipseLinkVersion"
     compile "org.eclipse.persistence:javax.persistence:$jpaVersion"
 
     /*Test*/
     testCompile "org.dbunit:dbunit:$dbUnitVersion"
-    testCompile "com.h2database:h2:$h2Version"
+
 }
