@@ -1,5 +1,6 @@
 angular.module('talkos')
-    .controller('AuthenticateController', function ($scope, AuthenticationService) {
+    .controller('AuthenticateController', ['AuthenticationService',
+        function ($scope, AuthenticationService) {
 
         $scope.credentials = {};
         $scope.login = function() {
@@ -9,11 +10,11 @@ angular.module('talkos')
         $scope.logout = function() {
             AuthenticationService.logout($scope, "/login");
         }
-    })
+    }])
 
     .factory("AuthenticationService", function ($http, $rootScope, $location) {
         return {
-            isAuthenticated: function (successCallback, failureCallback) {
+            checkAuthenticate: function (successCallback, failureCallback) {
                 return $http({
                     url: '/isAuthenticated',
                     headers: {
