@@ -1,19 +1,38 @@
 angular.module('talkos')
-    .controller('AuthenticateController', ['AuthenticationService',
+    .controller('AuthenticateController', ['$scope', 'AuthenticationService',
         function ($scope, AuthenticationService) {
 
         $scope.credentials = {};
         $scope.login = function() {
-            AuthenticationService.login($scope, "/home");
+            AuthenticationService.login($scope, '/home');
         };
-
         $scope.logout = function() {
-            AuthenticationService.logout($scope, "/login");
+            AuthenticationService.logout($scope, '/login');
         }
     }])
 
-    .factory("AuthenticationService", function ($http, $rootScope, $location) {
+    .service('AuthenticationService', function ($q, $http, $rootScope, $location) {
         return {
+            isAuthenticated: function () {
+                var deferred = $q.defer();
+
+                var successCallback = function (response) {
+                    var isAuthenticated = response.authenticated;
+                    $rootScope.isAuthenticated = isAuthenticated;
+                    isAuthenticated ? deferred.resolve() : failureCallback(response);
+                };
+
+                var failureCallback = function () {
+                    $rootScope.isAuthenticated = false;
+                    $location.path('/login');
+                    deferred.reject();
+                };
+
+                this.checkAuthenticate(successCallback, failureCallback);
+
+                return deferred.promise;
+            },
+
             checkAuthenticate: function (successCallback, failureCallback) {
                 return $http({
                     url: '/isAuthenticated',
@@ -28,9 +47,9 @@ angular.module('talkos')
                 var data = this.prepareData(controllerScope);
                 $http({
                     url: '/login',
-                    method: "POST",
+                    method: 'POST',
                     headers: {
-                        "Content-type": "application/x-www-form-urlencoded"
+                        'Content-type': 'application/x-www-form-urlencoded'
                     },
                     data: data
                 }).success(function (data, status, headers) {
@@ -49,25 +68,25 @@ angular.module('talkos')
             logout: function (pathToRedirect) {
                 $http({
                     url: '/logout',
-                    method: "POST",
+                    method: 'POST',
                     headers: {
-                        "Content-type": "application/x-www-form-urlencoded"
+                        'Content-type': 'application/x-www-form-urlencoded'
                     },
                     data: ""
                 }).success(function (data, status, headers) {
                     $location.path(pathToRedirect);
                 }).error(function (data, status, headers) {
-                    $location.path("/login");
+                    $location.path('/login');
                 })
             },
 
             prepareData: function(controllerScope) {
                 var data = [];
-                data.push("username=");
+                data.push('username=');
                 data.push(controllerScope.credentials.username);
-                data.push("&password=");
+                data.push('&password=');
                 data.push(controllerScope.credentials.password);
-                return data.join("");
+                return data.join('');
             }
         }
     });

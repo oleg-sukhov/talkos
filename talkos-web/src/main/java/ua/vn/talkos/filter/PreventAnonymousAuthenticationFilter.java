@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 /**
@@ -36,8 +37,9 @@ public class PreventAnonymousAuthenticationFilter extends GenericFilterBean {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+
         if(isNotInitializeUri(httpRequest) && authenticationTrustResolver.isAnonymous(authentication)) {
-            httpResponse.setStatus(UNAUTHORIZED.value());
+            httpResponse.setStatus(OK.value());
             AuthenticationJsonResponse jsonResponse = new AuthenticationJsonResponse(false, UNAUTHORIZED);
             httpResponse.getOutputStream().write(jsonMapper.writeValueAsBytes(jsonResponse));
             return;
