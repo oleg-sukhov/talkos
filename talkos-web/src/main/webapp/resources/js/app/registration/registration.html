@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="panel registration-panel panel-info">
+        <div class="panel-heading">Registration</div>
+        <div class="panel-body registration-body">
+            <form role="form" ng-submit="register()" ng-class="{'has-error': error}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="avatar" flow-init>
+                            <div class="thumbnail" ng-show="true">
+                                <img flow-img="$flow.files[0]"/>
+                            </div>
+
+                            <input type="file" flow-btn/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="input-group user-input">
+                            <span class="input-group-addon glyphicon glyphicon-user"></span>
+                            <input type="text" class="form-control" ng-model="credentials.username"
+                                   placeholder="Username">
+                        </div>
+
+                        <div class="input-group password-input" ng-class="{'has-error': error}">
+                            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                            <input type="password" class="form-control" ng-model="credentials.password"
+                                   placeholder="Password">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

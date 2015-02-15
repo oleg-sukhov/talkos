@@ -1,10 +1,13 @@
 var talkos = angular.module('talkos', [
     'ngRoute',
     'ui.bootstrap',
-    'ngCookies'
+    'ngCookies',
+    'flow'
 ]);
 
-talkos.config(function ($routeProvider) {
+talkos.config(['$routeProvider',
+    function ($routeProvider) {
+
     $routeProvider.
         when('/login', {
             templateUrl: 'resources/js/app/login/login.html',
@@ -20,10 +23,14 @@ talkos.config(function ($routeProvider) {
             }
 
         }).
+        when('/registration', {
+            templateUrl: 'resources/js/app/registration/registration.html',
+            controller: 'RegistrationController'
+        }).
         otherwise({
             redirectTo: '/home'
         });
-});
+}]);
 
 angular.module('talkos')
     .factory('AuthenticationChecker', ['AuthenticationService', function (AuthenticationService) {
