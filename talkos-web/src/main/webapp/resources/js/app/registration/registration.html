@@ -4,20 +4,18 @@
         <div class="panel-body registration-body">
             <form role="form" ng-submit="register()" ng-class="{'has-error': error}">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="avatar" flow-init>
-                            <div class="thumbnail" ng-show="true">
-                                <img src="/resources/images/anonymous.gif"/>
-                            </div>
-
-                            <button class="btn btn-primary load-avatar-btn btn-xs" flow-btn flow-attrs="{accept:'image/*'}">
-                                <span class="glyphicon glyphicon-picture"></span> Load Avatar
-                            </button>
-
+                    <div class="col-sm-3 avatar" flow-init>
+                        <div class="thumbnail" ng-show="true">
+                            <img ng-if="!$flow.files[0]" ng-src="resources/images/anonymous.gif"/>
+                            <img ng-if="$flow.files[0]" flow-img="$flow.files[$flow.files.length-1]"/>
                         </div>
-                    </div>
 
-                    <div class="col-md-7 registration-input-group">
+                        <button class="btn btn-primary load-avatar-btn" flow-btn flow-attrs="{accept:'image/*'}">
+                            <span class="glyphicon glyphicon-picture"></span> Load
+                        </button>
+
+                    </div>
+                    <div class="col-md-8 registration-input-group">
                         <div class="input-group graphic-input">
                             <span class="input-group-addon glyphicon glyphicon-user"></span>
                             <input type="text" class="form-control" ng-model="credentials.username"

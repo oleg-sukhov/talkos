@@ -1,3 +1,5 @@
+@import "bootstrap_spacelab.css";
+
 html, body {
     background-image: url(../images/background.jpg);
 }
@@ -47,19 +49,29 @@ html, body {
 .col-md-7.registration-input-group {
     padding-left: 0px;
 }
-
-.avatar > .thumbnail{
-    width: 100%;
-}
-
-.btn.load-avatar-btn {
-    color: #FF0000;
-    text-align: center;
-}
-
 .registration-button-group {
     margin: auto;
     text-align: center;
+}
+
+.col-sm-3.avatar {
+    padding-right: 0%;
+}
+
+.avatar > .thumbnail {
+    margin-bottom: 7px;
+}
+
+.avatar > .thumbnail > img {
+    max-width: 105px;
+    min-width: 105px;
+    max-height: 105px;
+    min-height: 105px;
+}
+.btn.load-avatar-btn {
+    padding: 5px 10px;
+    width: 100%;
+
 }
 
 /*registration page styles (end)*/
