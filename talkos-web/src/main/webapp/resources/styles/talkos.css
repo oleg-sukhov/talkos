@@ -1,4 +1,4 @@
-@import "bootstrap_spacelab.css";
+@import "../bower_components/bootstrap/dist/css/bootstrap_spacelab.css";
 
 html, body {
     background-image: url(../images/background.jpg);

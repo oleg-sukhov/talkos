@@ -2,8 +2,8 @@
 <html lang="en" ng-app="talkos">
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/talkos.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/bootstrap_spacelab.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/bootstrap/dist/css/bootstrap_spacelab.css">
+    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bower_components/bootstrap/dist/css/bootstrap.css">--%>
 </head>
 <body>
 
