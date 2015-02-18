@@ -18,10 +18,22 @@ import javax.persistence.Table;
 public class User extends AbstractPersistable<Long> {
 
     @Column
-    private String username;
+    private String login;
 
     @Column
     private String password;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String email;
+
+    @Column
+    private String avatarPath;
 
     @Column
     private boolean enabled;

@@ -20,10 +20,12 @@ buildscript {
 apply plugin: 'flyway'
 
 flyway {
-    /*user = 'os'
+/*
+    user = 'os'
     password = 'satellite'
     url = 'jdbc:postgresql://localhost:5432/talkos'
-    locations = ['classpath:ua/vn/talkos/sql']*/
+    locations = ['classpath:ua/vn/talkos/sql']
+*/
     user = 'sa'
     password = ''
     url = 'jdbc:h2:tcp://localhost/~/talkos'

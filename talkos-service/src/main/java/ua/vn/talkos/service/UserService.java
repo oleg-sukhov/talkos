@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface UserService {
     List<User> loadUsers();
-    User loadUserByUserName(String username);
+    User loadUserByLogin(String username);
 }
