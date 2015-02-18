@@ -1,5 +1,4 @@
-ALTER TABLE users
-  ADD CO first_name VARCHAR(100),
-  ADD last_name  VARCHAR(100),
-  ADD email      VARCHAR(100),
-  ADD CONSTRAINT email_unique UNIQUE(email);
+ALTER TABLE users  ADD COLUMN first_name VARCHAR(100);
+ALTER TABLE users  ADD COLUMN last_name  VARCHAR(100);
+ALTER TABLE users  ADD COLUMN email VARCHAR(100);
+ALTER TABLE users  ADD CONSTRAINT email_unique UNIQUE(email);

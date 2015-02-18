@@ -17,22 +17,22 @@ import javax.persistence.Table;
 @Data
 public class User extends AbstractPersistable<Long> {
 
-    @Column
+    @Column(unique = true, nullable = false, length = 100)
     private String login;
 
-    @Column
+    @Column(nullable = false, length = 100)
     private String password;
 
-    @Column
+    @Column(name = "first_name", length = 100)
     private String firstName;
 
-    @Column
+    @Column(name = "last_name", length = 100)
     private String lastName;
 
-    @Column
+    @Column(unique = true, length = 100)
     private String email;
 
-    @Column
+    @Column(length = 300)
     private String avatarPath;
 
     @Column
