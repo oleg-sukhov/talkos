@@ -1,9 +1,5 @@
 var talkos = angular.module('talkos', [
-    'ngRoute',
-    'ui.bootstrap',
-    'ngCookies',
-    'flow'
-]);
+    'ngRoute', 'ui.bootstrap', 'ngCookies', 'flow', 'ngResource']);
 
 talkos.config(['$routeProvider',
     function ($routeProvider) {

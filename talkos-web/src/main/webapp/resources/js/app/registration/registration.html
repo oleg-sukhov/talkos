@@ -18,42 +18,36 @@
                     <div class="col-md-8 registration-input-group">
                         <div class="input-group graphic-input">
                             <span class="input-group-addon glyphicon glyphicon-user"></span>
-                            <input type="text" class="form-control" ng-model="credentials.username"
-                                   placeholder="Login">
+                            <input type="text" class="form-control" ng-model="data.login" placeholder="Login">
                         </div>
 
                         <div class="input-group graphic-input" ng-class="{'has-error': error}">
                             <span class="input-group-addon glyphicon glyphicon-lock"></span>
-                            <input type="password" class="form-control" ng-model="credentials.password"
-                                   placeholder="Password">
+                            <input type="password" class="form-control" ng-model="data.password" placeholder="Password">
                         </div>
 
                         <div class="input-group graphic-input" ng-class="{'has-error': error}">
                             <span class="input-group-addon glyphicon glyphicon-lock"></span>
-                            <input type="password" class="form-control" ng-model="credentials.confirmPassword"
-                                   placeholder="Confirm Password">
+                            <input type="password" class="form-control" ng-model="data.confirmPassword" placeholder="Confirm Password">
                         </div>
 
                         <div class="input-group graphic-input" ng-class="{'has-error': error}">
                             <span class="input-group-addon glyphicon glyphicon-envelope"></span>
-                            <input type="text" class="form-control" ng-model="credentials.email"
-                                   placeholder="Email">
+                            <input type="text" class="form-control" ng-model="data.email" placeholder="Email">
                         </div>
 
                         <div class="input-group graphic-input" ng-class="{'has-error': error}">
                             <span class="input-group-addon glyphicon glyphicon-font"></span>
-                            <input type="text" class="form-control" ng-model="credentials.first_name"
-                                   placeholder="First Name">
+                            <input type="text" class="form-control" ng-model="data.first_name" placeholder="First Name">
                         </div>
 
                         <div class="input-group graphic-input" ng-class="{'has-error': error}">
                             <span class="input-group-addon glyphicon glyphicon-bold"></span>
-                            <input type="text" class="form-control" ng-model="credentials.last_name"
-                                   placeholder="Last Name">
+                            <input type="text" class="form-control" ng-model="data.last_name" placeholder="Last Name">
                         </div>
 
                         <div class="registration-button-group">
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" ng-click="save()">
                                 <span class="glyphicon glyphicon-upload"></span> Register
                             </button>
 

@@ -15,6 +15,7 @@
 <script src="${pageContext.request.contextPath}/resources/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bower_components/ng-flow/dist/ng-flow-standalone.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
 
 <!--custom scripts-->
 <script src="${pageContext.request.contextPath}/resources/js/app/app.js"></script>
