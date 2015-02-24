@@ -1,6 +1,7 @@
 package ua.vn.talkos.rest;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,8 @@ public class UserRestController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public void save(User user) {
+    public void save(@RequestBody User user) {
+        System.out.println(123);
 
     }
 }
