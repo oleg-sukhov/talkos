@@ -4,8 +4,8 @@ angular.module('talkos')
             return {
 
                 save: function(user) {
-                    var userResource = $resource('/user', user, {'save': {method:'POST'}});
-                    userResource.save();
+                    var userResource = $resource('/register', {'save': {method:'POST'}});
+                    userResource.save(user);
                 }
             };
         }]);

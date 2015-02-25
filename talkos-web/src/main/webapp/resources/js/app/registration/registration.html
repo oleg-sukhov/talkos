@@ -2,7 +2,7 @@
     <div class="panel registration-panel panel-info">
         <div class="panel-heading">Registration</div>
         <div class="panel-body registration-body">
-            <form role="form" ng-submit="register()" ng-class="{'has-error': error}">
+            <form name="registration" ng-submit="register()">
                 <div class="row">
                     <div class="col-sm-3 avatar" flow-init>
                         <div class="thumbnail" ng-show="true">
@@ -16,34 +16,73 @@
 
                     </div>
                     <div class="col-md-8 registration-input-group">
-                        <div class="input-group graphic-input">
-                            <span class="input-group-addon glyphicon glyphicon-user"></span>
-                            <input type="text" class="form-control" ng-model="data.login" placeholder="Login">
+                        <div class="form-group graphic-input has-feedback"
+                             ng-class="{'has-error' : registration.login.$invalid && !registration.login.$pristine,
+                                        'has-success' : registration.login.$valid && !registration.login.$pristine}">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-user"></span>
+                                <input type="text" class="form-control" name="login" ng-model="data.login"
+                                       placeholder="Login" required/>
+                            </div>
+                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                  ng-show="registration.login.$valid" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                  ng-show="registration.login.$invalid && !registration.login.$pristine"
+                                  aria-hidden="true"></span>
                         </div>
 
-                        <div class="input-group graphic-input" ng-class="{'has-error': error}">
-                            <span class="input-group-addon glyphicon glyphicon-lock"></span>
-                            <input type="password" class="form-control" ng-model="data.password" placeholder="Password">
+                        <div class="form-group graphic-input has-feedback"
+                             ng-class="{'has-error' : registration.password.$invalid && !registration.password.$pristine">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                                <input type="password" name="password" class="form-control" ng-model="data.password"
+                                       placeholder="Password" required>
+                            </div>
                         </div>
 
-                        <div class="input-group graphic-input" ng-class="{'has-error': error}">
-                            <span class="input-group-addon glyphicon glyphicon-lock"></span>
-                            <input type="password" class="form-control" ng-model="data.confirmPassword" placeholder="Confirm Password">
+                        <div class="form-group graphic-input has-feedback"
+                             ng-class="{'has-error' : registration.email.$invalid && !registration.email.$pristine,
+                                        'has-success' : registration.email.$valid && !registration.email.$pristine}">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+                                <input type="email" name="email" class="form-control" ng-model="data.email"
+                                       placeholder="Email" required>
+                            </div>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+                                  ng-show="registration.email.$valid"></span>
+
+                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                  ng-show="registration.email.$invalid && !registration.email.$pristine"></span>
                         </div>
 
-                        <div class="input-group graphic-input" ng-class="{'has-error': error}">
-                            <span class="input-group-addon glyphicon glyphicon-envelope"></span>
-                            <input type="text" class="form-control" ng-model="data.email" placeholder="Email">
+                        <div class="form-group graphic-input has-feedback"
+                             ng-class="{'has-error' : registration.first_name.$invalid && !registration.first_name.$pristine,
+                                        'has-success' : registration.first_name.$valid && !registration.first_name.$pristine}">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-font"></span>
+                                <input type="text" name="first_name" class="form-control" ng-model="data.first_name"
+                                       placeholder="First Name" required>
+                            </div>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+                                  ng-show="registration.first_name.$valid"></span>
+
+                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                  ng-show="registration.first_name.$invalid && !registration.first_name.$pristine"></span>
                         </div>
 
-                        <div class="input-group graphic-input" ng-class="{'has-error': error}">
-                            <span class="input-group-addon glyphicon glyphicon-font"></span>
-                            <input type="text" class="form-control" ng-model="data.first_name" placeholder="First Name">
-                        </div>
+                        <div class="form-group graphic-input has-feedback"
+                             ng-class="{'has-error' : registration.last_name.$invalid && !registration.last_name.$pristine,
+                                        'has-success' : registration.last_name.$valid && !registration.last_name.$pristine}">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-bold"></span>
+                                <input type="text" name="last_name" class="form-control" ng-model="data.last_name"
+                                       placeholder="Last Name" required>
+                            </div>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
+                                  ng-show="registration.last_name.$valid"></span>
 
-                        <div class="input-group graphic-input" ng-class="{'has-error': error}">
-                            <span class="input-group-addon glyphicon glyphicon-bold"></span>
-                            <input type="text" class="form-control" ng-model="data.last_name" placeholder="Last Name">
+                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                  ng-show="registration.last_name.$invalid && !registration.last_name.$pristine"></span>
                         </div>
 
                         <div class="registration-button-group">

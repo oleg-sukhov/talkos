@@ -10,11 +10,13 @@ import ua.vn.talkos.entity.User;
 /**
  * @author oleg.sukhov
  */
-@RequestMapping("/user")
 @RestController
 public class UserRestController {
 
+
+
     @RequestMapping(
+            value = "/register",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
