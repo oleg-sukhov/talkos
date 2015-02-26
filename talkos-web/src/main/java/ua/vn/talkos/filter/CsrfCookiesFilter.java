@@ -1,6 +1,7 @@
 package ua.vn.talkos.filter;
 
 import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -12,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Autor oleg.sukhov
+ * @author oleg.sukhov
  */
+@Component
 public class CsrfCookiesFilter extends OncePerRequestFilter {
     public static final String XSRF_TOKEN_COOKIE_KEY = "XSRF-TOKEN";
 

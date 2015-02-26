@@ -56,33 +56,33 @@
                         </div>
 
                         <div class="form-group graphic-input has-feedback"
-                             ng-class="{'has-error' : registration.first_name.$invalid && !registration.first_name.$pristine,
-                                        'has-success' : registration.first_name.$valid && !registration.first_name.$pristine}">
+                             ng-class="{'has-error' : registration.firstName.$invalid && !registration.firstName.$pristine,
+                                        'has-success' : registration.firstName.$valid && !registration.firstName.$pristine}">
                             <div class="input-group">
                                 <span class="input-group-addon glyphicon glyphicon-font"></span>
-                                <input type="text" name="first_name" class="form-control" ng-model="data.first_name"
+                                <input type="text" name="firstName" class="form-control" ng-model="data.firstName"
                                        placeholder="First Name" required>
                             </div>
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
-                                  ng-show="registration.first_name.$valid"></span>
+                                  ng-show="registration.firstName.$valid"></span>
 
                             <span class="glyphicon glyphicon-remove form-control-feedback"
-                                  ng-show="registration.first_name.$invalid && !registration.first_name.$pristine"></span>
+                                  ng-show="registration.firstName.$invalid && !registration.firstName.$pristine"></span>
                         </div>
 
                         <div class="form-group graphic-input has-feedback"
-                             ng-class="{'has-error' : registration.last_name.$invalid && !registration.last_name.$pristine,
-                                        'has-success' : registration.last_name.$valid && !registration.last_name.$pristine}">
+                             ng-class="{'has-error' : registration.lastName.$invalid && !registration.lastName.$pristine,
+                                        'has-success' : registration.lastName.$valid && !registration.lastName.$pristine}">
                             <div class="input-group">
                                 <span class="input-group-addon glyphicon glyphicon-bold"></span>
-                                <input type="text" name="last_name" class="form-control" ng-model="data.last_name"
+                                <input type="text" name="lastName" class="form-control" ng-model="data.lastName"
                                        placeholder="Last Name" required>
                             </div>
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"
-                                  ng-show="registration.last_name.$valid"></span>
+                                  ng-show="registration.lastName.$valid"></span>
 
                             <span class="glyphicon glyphicon-remove form-control-feedback"
-                                  ng-show="registration.last_name.$invalid && !registration.last_name.$pristine"></span>
+                                  ng-show="registration.lastName.$invalid && !registration.lastName.$pristine"></span>
                         </div>
 
                         <div class="registration-button-group">

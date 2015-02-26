@@ -1,4 +1,4 @@
-package ua.vn.talkos.security.urlchain;
+package ua.vn.talkos.security.urlchecker;
 
 import org.springframework.stereotype.Component;
 
