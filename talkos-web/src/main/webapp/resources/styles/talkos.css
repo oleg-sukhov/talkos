@@ -20,6 +20,10 @@ html, body {
     padding: 5%;
 }
 
+.form-group {
+    margin-bottom: 5px !important;
+}
+
 .graphic-input {
     padding-bottom: 2%;
 }

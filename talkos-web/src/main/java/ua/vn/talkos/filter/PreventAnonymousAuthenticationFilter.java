@@ -2,6 +2,7 @@ package ua.vn.talkos.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -27,8 +28,7 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @Component
 public class PreventAnonymousAuthenticationFilter extends GenericFilterBean {
 
-    @Resource
-    private AuthenticationTrustResolver authenticationTrustResolver;
+    private AuthenticationTrustResolver authenticationTrustResolver = new AuthenticationTrustResolverImpl();
 
     @Resource(name = "jsonMapper")
     private ObjectMapper jsonMapper = new ObjectMapper();

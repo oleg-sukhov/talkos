@@ -5,21 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
-import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import ua.vn.talkos.filter.CsrfCookiesFilter;
 import ua.vn.talkos.security.AuthenticationErrorHandler;
+import ua.vn.talkos.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.Filter;
@@ -29,6 +27,7 @@ import javax.servlet.Filter;
  */
 @Configuration
 @EnableWebSecurity
+@Import(WebConfig.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String USERNAME_KEY = "username";
@@ -39,10 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureAuthenticationManagerBuilder(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("user")
-                .roles("USER");
+        auth.userDetailsService((UserService)applicationContext.getBean("userServiceImpl"))
+                .passwordEncoder((PasswordEncoder) applicationContext.getBean("passwordEncoder"));
     }
 
     @Override
@@ -59,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .csrf().csrfTokenRepository(csrfTokenRepository())
                 .and()
                     .addFilterAfter((Filter) applicationContext.getBean("csrfCookiesFilter"), UsernamePasswordAuthenticationFilter.class)
-                    .addFilterAfter((Filter) applicationContext.getBean("preventAnonymousAuthenticationFilter"), CsrfFilter.class)
-                    .addFilterAfter((Filter) applicationContext.getBean("passwordEncodeFilter"), AnonymousAuthenticationFilter.class)
+                    .addFilterAfter((Filter) applicationContext.getBean("preventAnonymousAuthenticationFilter"), CsrfCookiesFilter.class)
+
                 .formLogin()
                     .failureHandler(new AuthenticationErrorHandler())
                     .usernameParameter(USERNAME_KEY)
@@ -82,13 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new ObjectMapper();
     }
 
-    @Bean
-    public AuthenticationTrustResolver authenticationTrustResolver() {
-        return new AuthenticationTrustResolverImpl();
-    }
+//    @Bean
+//    public AuthenticationTrustResolver authenticationTrustResolver() {
+//        return new AuthenticationTrustResolverImpl();
+//    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

@@ -1,6 +1,10 @@
 package ua.vn.talkos.service.impl;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ua.vn.talkos.dto.UserDto;
 import ua.vn.talkos.entity.User;
 import ua.vn.talkos.repository.UserRepository;
 import ua.vn.talkos.service.UserService;
@@ -16,6 +20,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Resource
+    private PasswordEncoder passwordEncoder;
+
+    @Resource
     private UserRepository userRepository;
 
     @Override
@@ -29,13 +36,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        Optional<User> optionalUser = Optional.ofNullable(user);
+    public void save(UserDto userDto) {
+        Optional<UserDto> optionalUser = Optional.ofNullable(userDto);
 
         if(!optionalUser.isPresent()) {
             throw new IllegalArgumentException("User cannot be null");
         }
 
+        User user = userDto.toEntity();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return loadByLogin(username);
     }
 }
