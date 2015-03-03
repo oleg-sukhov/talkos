@@ -26,6 +26,7 @@ html, body {
 
 .graphic-input {
     padding-bottom: 2%;
+    width: 90%;
 }
 
 .graphic-input > .input-group >.glyphicon {
@@ -33,7 +34,7 @@ html, body {
 }
 
 .control-btn {
-    margin-right: 2%;
+    margin-right: 5%;
 }
 
 .panel-body > .alert {

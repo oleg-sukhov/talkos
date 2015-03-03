@@ -11,5 +11,13 @@ angular.module('talkos')
             };
             $scope.registration = function () {
                 $location.path("/registration");
-            }
+            };
+
+            $scope.$watch('credentials.username', function (newVal, oldVal) {
+                $scope.signInState = !!newVal;
+                $scope.tooltip = {
+                    title: "Username can't be empty",
+                    placement: 'right'
+                };
+            });
     }]);
