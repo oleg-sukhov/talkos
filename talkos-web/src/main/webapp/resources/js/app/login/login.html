@@ -11,7 +11,9 @@
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-user"></span>
                         <input type="text" class="form-control" ng-model="credentials.username"
-                               placeholder="Username" tooltip="{{userNameError}}"/>
+                               placeholder="Username" data-toggle="tooltip"
+                               tooltip="{{activeErrors.usernameValidation.message}}"
+                               tooltip-placement="{{activeErrors.usernameValidation.placement}}"/>
                     </div>
                 </div>
 
@@ -19,12 +21,13 @@
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-lock"></span>
                         <input type="password" class="form-control" ng-model="credentials.password"
-                               placeholder="Password" data-toggle="tooltip" tooltip="Password can't be empty"
-                               tooltip-placement="right">
+                               placeholder="Password" data-toggle="tooltip"
+                               tooltip="{{activeErrors.passwordValidation.message}}"
+                               tooltip-placement="{{activeErrors.passwordValidation.placement}}"/>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success control-btn" ng-disabled="!signInState">
+                <button type="submit" class="btn btn-success control-btn" ng-disabled="isAllControlIsInvalid()">
                     <span class="glyphicon glyphicon-ok-sign"></span> Sign in
                 </button>
 
