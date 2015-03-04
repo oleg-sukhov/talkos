@@ -57,7 +57,7 @@ AuthenticationChecker.resolve = {
         $defer(delay.resolve, 1000);
         return delay.promise;
     }
-}
+};
 talkos.provider("AuthenticationChecker", ["$q", "$rootScope", "$location", "$timeout", "AuthenticationService",
     function ($q, $rootScope, $location, $timeout, AuthenticationService) {
         return {
