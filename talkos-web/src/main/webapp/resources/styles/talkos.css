@@ -26,7 +26,7 @@ html, body {
 
 .graphic-input {
     padding-bottom: 2%;
-    width: 90%;
+    width: 100%;
 }
 
 .graphic-input > .input-group >.glyphicon {
