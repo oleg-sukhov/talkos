@@ -1,7 +1,11 @@
 angular.module('talkos')
-    .controller('HomeController', function ($scope, $controller) {
-        var authController = $controller('AuthenticateController');
-        $scope.logout = function() {
-            authController.logout();
-        };
-    });
+    .controller('HomeController', ['AuthenticationService',
+        function ($scope, $controller, AuthenticationService) {
+            this.resolve = {
+                delay: function ($q, $defer) {
+                    var delay = $q.defer();
+                    $defer(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            };
+        }]);

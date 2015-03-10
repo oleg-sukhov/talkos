@@ -1,8 +1,10 @@
+@import "../bower_components/bootstrap/dist/css/bootstrap_spacelab.css";
+
 html, body {
     background-image: url(../images/background.jpg);
 }
 
-/*Login page styles*/
+/*Login page styles (start)*/
 .login-panel {
     width: 25%;
     margin-top: 15%;
@@ -18,16 +20,21 @@ html, body {
     padding: 5%;
 }
 
-.user-input, .password-input {
-    padding-bottom: 2%;
+.form-group {
+    margin-bottom: 5px !important;
 }
 
-.user-input > .glyphicon, .password-input > .glyphicon {
+.graphic-input {
+    padding-bottom: 2%;
+    width: 100%;
+}
+
+.graphic-input > .input-group >.glyphicon {
     top: 0;
 }
 
 .control-btn {
-    margin-right: 2%;
+    margin-right: 5%;
 }
 
 .panel-body > .alert {
@@ -35,4 +42,41 @@ html, body {
     text-align: center;
 }
 
-/*|Login page styles|*/
+/*Login page styles (end)*/
+
+/*registration page styles (start)*/
+.registration-panel {
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+.col-md-7.registration-input-group {
+    padding-left: 0px;
+}
+.registration-button-group {
+    margin: auto;
+    text-align: center;
+}
+
+.col-sm-3.avatar {
+    padding-right: 0%;
+}
+
+.avatar > .thumbnail {
+    margin-bottom: 7px;
+}
+
+.avatar > .thumbnail > img {
+    max-width: 105px;
+    min-width: 105px;
+    max-height: 105px;
+    min-height: 105px;
+}
+.btn.load-avatar-btn {
+    padding: 5px 10px;
+    width: 100%;
+
+}
+
+/*registration page styles (end)*/

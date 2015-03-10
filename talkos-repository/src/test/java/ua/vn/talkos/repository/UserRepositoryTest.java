@@ -4,10 +4,8 @@ import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -21,7 +19,8 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * @author oleg.sukhov
@@ -70,25 +69,25 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
 
         assertNotNull(user);
         assertEquals(Long.valueOf(4), user.getId());
-        assertEquals("BorisovE", user.getUsername());
+        assertEquals("BorisovE", user.getLogin());
         assertEquals("qwer5", user.getPassword());
         assertEquals(true, user.isEnabled());
     }
 
     @Test
     public void testFindByUserName() {
-        User firstUser = userRepository.findByUsername("BorisovE");
-        User secondUser = userRepository.findByUsername("JoshuaB");
+        User firstUser = userRepository.findByLogin("BorisovE");
+        User secondUser = userRepository.findByLogin("JoshuaB");
 
         assertNotNull(firstUser);
         assertEquals(Long.valueOf(4), firstUser.getId());
-        assertEquals("BorisovE", firstUser.getUsername());
+        assertEquals("BorisovE", firstUser.getLogin());
         assertEquals("qwer5", firstUser.getPassword());
         assertEquals(true, firstUser.isEnabled());
 
         assertNotNull(secondUser);
         assertEquals(Long.valueOf(1), secondUser.getId());
-        assertEquals("JoshuaB", secondUser.getUsername());
+        assertEquals("JoshuaB", secondUser.getLogin());
         assertEquals("qwer", secondUser.getPassword());
         assertEquals(false, secondUser.isEnabled());
     }

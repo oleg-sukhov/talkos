@@ -13,6 +13,7 @@
     "angular-route": "1.3.x",
     "angular-resource": "1.3.x",
     "angular-cookies": "1.3.x",
-    "angular-bootstrap": "0.12.x"
+    "angular-bootstrap": "0.12.x",
+    "ng-flow": "2.4.x"
   }
 }

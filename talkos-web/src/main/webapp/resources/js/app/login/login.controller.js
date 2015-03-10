@@ -1,73 +1,51 @@
 angular.module('talkos')
-    .controller('AuthenticateController', ['AuthenticationService',
-        function ($scope, AuthenticationService) {
+    .controller('AuthenticateController', ['$scope', '$location', 'AuthenticationService',
+        function ($scope, $location, AuthenticationService) {
 
-        $scope.credentials = {};
-        $scope.login = function() {
-            AuthenticationService.login($scope, "/home");
-        };
+            $scope.credentials = {};
+            $scope.activeErrors = [];
+            var validationMessages = {
+                'usernameValidation': {
+                    message: "Username can't be empty",
+                    placement: 'right'
+                },
+                'passwordValidation': {
+                    message: "Password can't be empty",
+                    placement: 'right'
+                }
+            };
 
-        $scope.logout = function() {
-            AuthenticationService.logout($scope, "/login");
-        }
-    }])
+            $scope.login = function () {
+                AuthenticationService.login($scope, '/home');
+            };
+            $scope.logout = function () {
+                AuthenticationService.logout($scope, '/login');
+            };
+            $scope.registration = function () {
+                $location.path("/registration");
+            };
 
-    .factory("AuthenticationService", function ($http, $rootScope, $location) {
-        return {
-            checkAuthenticate: function (successCallback, failureCallback) {
-                return $http({
-                    url: '/isAuthenticated',
-                    headers: {
-                        'Content-Type': "application/json"
-                    },
-                    data: ''
-                }).success(successCallback).error(failureCallback);
-            },
+            $scope.$watch('credentials.username', function (value) {
+                $scope.validate(value, 'usernameValidation');
+            });
 
-            login: function (controllerScope, pathToRedirect) {
-                var data = this.prepareData(controllerScope);
-                $http({
-                    url: '/login',
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded"
-                    },
-                    data: data
-                }).success(function (data, status, headers) {
-                    $location.path(pathToRedirect);
-                    controllerScope.error = false;
-                }).error(function (data, status, headers) {
-                    $location.path("/login");
-                    controllerScope.error = true;
-                    controllerScope.loginErrorAlert = {
-                        type: 'danger',
-                        msg: 'Username or password was incorrect'
-                    };
-                })
-            },
+            $scope.$watch('credentials.password', function (value) {
+                $scope.validate(value, 'passwordValidation');
+            });
 
-            logout: function (pathToRedirect) {
-                $http({
-                    url: '/logout',
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded"
-                    },
-                    data: ""
-                }).success(function (data, status, headers) {
-                    $location.path(pathToRedirect);
-                }).error(function (data, status, headers) {
-                    $location.path("/login");
-                })
-            },
+            $scope.validate = function(value, controlName) {
+                if($scope.isInvalid(value)) {
+                    $scope.activeErrors[controlName] = validationMessages[controlName];
+                } else {
+                    delete $scope.activeErrors[controlName];
+                }
+            };
 
-            prepareData: function(controllerScope) {
-                var data = [];
-                data.push("username=");
-                data.push(controllerScope.credentials.username);
-                data.push("&password=");
-                data.push(controllerScope.credentials.password);
-                return data.join("");
+            $scope.isInvalid = function(value) {
+                return !value;
+            };
+
+            $scope.isAllControlIsInvalid = function() {
+                return !!Object.keys($scope.activeErrors).length;
             }
-        }
-    });
+    }]);
