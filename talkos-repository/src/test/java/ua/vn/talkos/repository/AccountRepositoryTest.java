@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ua.vn.talkos.config.RepositoryTestConfig;
-import ua.vn.talkos.entity.User;
+import ua.vn.talkos.entity.Account;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -26,10 +26,10 @@ import static org.testng.Assert.assertNotNull;
  * @author oleg.sukhov
  */
 @ContextConfiguration(classes = RepositoryTestConfig.class)
-public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
+public class AccountRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @Resource
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Resource
     private IDatabaseTester databaseTester;
@@ -53,42 +53,42 @@ public class UserRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindAll() {
-        List<User> users = userRepository.findAll();
-        assertNotNull(users);
-        assertEquals(4, users.size());
+        List<Account> accounts = accountRepository.findAll();
+        assertNotNull(accounts);
+        assertEquals(4, accounts.size());
     }
 
     @Test
     public void testCount() {
-        assertEquals(4, userRepository.count());
+        assertEquals(4, accountRepository.count());
     }
 
     @Test
     public void testFindOne() {
-        User user = userRepository.findOne(Long.valueOf(4));
+        Account account = accountRepository.findOne(Long.valueOf(4));
 
-        assertNotNull(user);
-        assertEquals(Long.valueOf(4), user.getId());
-        assertEquals("BorisovE", user.getLogin());
-        assertEquals("qwer5", user.getPassword());
-        assertEquals(true, user.isEnabled());
+        assertNotNull(account);
+        assertEquals(Long.valueOf(4), account.getId());
+        assertEquals("BorisovE", account.getLogin());
+        assertEquals("qwer5", account.getPassword());
+        assertEquals(true, account.isEnabled());
     }
 
     @Test
     public void testFindByUserName() {
-        User firstUser = userRepository.findByLogin("BorisovE");
-        User secondUser = userRepository.findByLogin("JoshuaB");
+        Account firstAccount = accountRepository.findByLogin("BorisovE");
+        Account secondAccount = accountRepository.findByLogin("JoshuaB");
 
-        assertNotNull(firstUser);
-        assertEquals(Long.valueOf(4), firstUser.getId());
-        assertEquals("BorisovE", firstUser.getLogin());
-        assertEquals("qwer5", firstUser.getPassword());
-        assertEquals(true, firstUser.isEnabled());
+        assertNotNull(firstAccount);
+        assertEquals(Long.valueOf(4), firstAccount.getId());
+        assertEquals("BorisovE", firstAccount.getLogin());
+        assertEquals("qwer5", firstAccount.getPassword());
+        assertEquals(true, firstAccount.isEnabled());
 
-        assertNotNull(secondUser);
-        assertEquals(Long.valueOf(1), secondUser.getId());
-        assertEquals("JoshuaB", secondUser.getLogin());
-        assertEquals("qwer", secondUser.getPassword());
-        assertEquals(false, secondUser.isEnabled());
+        assertNotNull(secondAccount);
+        assertEquals(Long.valueOf(1), secondAccount.getId());
+        assertEquals("JoshuaB", secondAccount.getLogin());
+        assertEquals("qwer", secondAccount.getPassword());
+        assertEquals(false, secondAccount.isEnabled());
     }
 }

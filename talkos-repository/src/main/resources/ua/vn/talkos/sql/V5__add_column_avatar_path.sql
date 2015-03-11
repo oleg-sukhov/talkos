@@ -1,1 +1,1 @@
-ALTER TABLE users ADD COLUMN avatar_path VARCHAR(300);
+ALTER TABLE accounts ADD COLUMN avatar_path VARCHAR(300);

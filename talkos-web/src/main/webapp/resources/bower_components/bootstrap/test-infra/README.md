@@ -31,18 +31,18 @@ Travis does offer built-in caching on their paid plans, but this do-it-ourselves
 
 ### Overview
 1. Create an Amazon Web Services (AWS) account.
-2. Create an Identity & Access Management (IAM) user, and note their credentials.
+2. Create an Identity & Access Management (IAM) account, and note their credentials.
 3. Create an S3 bucket.
-4. Set permissions on the bucket to grant the user read+write access.
-5. Set the user credentials as secure Travis environment variables.
+4. Set permissions on the bucket to grant the account read+write access.
+5. Set the account credentials as secure Travis environment variables.
 
 ### In detail
 1. Create an AWS account.
 2. Login to the [AWS Management Console](https://console.aws.amazon.com).
 3. Go to the IAM Management Console.
-4. Create a new user (named e.g. `travis-ci`) and generate an access key for them. Note both the Access Key ID and the Secret Access Key.
-5. Note the user's ARN (Amazon Resource Name), which can be found in the "Summary" tab of the user browser. This will be of the form: `arn:aws:iam::XXXXXXXXXXXXXX:user/the-username-goes-here`
-6. Note the user's access key, which can be found in the "Security Credentials" tab of the user browser.
+4. Create a new account (named e.g. `travis-ci`) and generate an access key for them. Note both the Access Key ID and the Secret Access Key.
+5. Note the account's ARN (Amazon Resource Name), which can be found in the "Summary" tab of the account browser. This will be of the form: `arn:aws:iam::XXXXXXXXXXXXXX:account/the-username-goes-here`
+6. Note the account's access key, which can be found in the "Security Credentials" tab of the account browser.
 7. Go to the S3 Management Console.
 8. Create a new bucket. For a non-publicly-accessible bucket (like Bootstrap uses), it's recommended that the bucket name be random to increase security. On most *nix machines, you can easily generate a random UUID to use as the bucket name using Python:
 
@@ -52,7 +52,7 @@ Travis does offer built-in caching on their paid plans, but this do-it-ourselves
 
 9. Determine and note what your bucket's ARN is. The ARN for an S3 bucket is of the form: `arn:aws:s3:::the-bucket-name-goes-here`
 10. In the bucket's Properties pane, in the "Permissions" section, click the "Edit bucket policy" button.
-11. Input and submit an IAM Policy that grants the user at least read+write rights to the bucket. AWS has a policy generator and some examples to help with crafting the policy. Here's the policy that Bootstrap uses, with the sensitive bits censored:
+11. Input and submit an IAM Policy that grants the account at least read+write rights to the bucket. AWS has a policy generator and some examples to help with crafting the policy. Here's the policy that Bootstrap uses, with the sensitive bits censored:
 
     ```json
     {
@@ -63,7 +63,7 @@ Travis does offer built-in caching on their paid plans, but this do-it-ourselves
                 "Sid": "StmtXXXXXXXXXXXXXX",
                 "Effect": "Allow",
                 "Principal": {
-                    "AWS": "arn:aws:iam::XXXXXXXXXXXXXX:user/travis-ci"
+                    "AWS": "arn:aws:iam::XXXXXXXXXXXXXX:account/travis-ci"
                 },
                 "Action": [
                     "s3:AbortMultipartUpload",

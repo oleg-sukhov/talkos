@@ -17,7 +17,7 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import ua.vn.talkos.filter.CsrfCookiesFilter;
 import ua.vn.talkos.security.AuthenticationErrorHandler;
-import ua.vn.talkos.service.UserService;
+import ua.vn.talkos.service.AccountService;
 
 import javax.annotation.Resource;
 import javax.servlet.Filter;
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureAuthenticationManagerBuilder(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService((UserService)applicationContext.getBean("userServiceImpl"))
+        auth.userDetailsService((AccountService)applicationContext.getBean("accountServiceImpl"))
                 .passwordEncoder((PasswordEncoder) applicationContext.getBean("passwordEncoder"));
     }
 

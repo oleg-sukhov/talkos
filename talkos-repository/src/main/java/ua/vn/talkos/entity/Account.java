@@ -14,10 +14,9 @@ import java.util.Collection;
  * @author oleg.sukhov
  */
 @Entity
-@Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class User extends PersistableEntity<Long> implements UserDetails {
+public class Account extends PersistableEntity<Long> implements UserDetails {
 
     @Column(unique = true, nullable = false, length = 100)
     private String login;

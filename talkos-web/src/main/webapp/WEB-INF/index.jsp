@@ -27,7 +27,7 @@
 <!--Registration-->
 <script src="${pageContext.request.contextPath}/resources/js/app/registration/registration.controller.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app/registration/registration.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/app/user/user.service.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app/service/account.service.js"></script>
 
 </body>
 </html>

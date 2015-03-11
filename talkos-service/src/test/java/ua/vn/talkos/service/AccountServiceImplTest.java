@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 /**
  * @author oleg.sukhov
  */
-public class UserServiceImplTest {
+public class AccountServiceImplTest {
 
     @BeforeMethod
     public void setup() {

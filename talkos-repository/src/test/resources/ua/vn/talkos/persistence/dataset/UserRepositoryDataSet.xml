@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <users id="1" login="JoshuaB" password="qwer" first_name="Joshua" last_name="Bloch" email="jbloch@email.ua" enabled="false" />
-    <users id="2" login="TorvaldsL " password="qwer4" first_name="Linus" last_name="Torvalds" email="ltorvalds@linux.org" enabled="true"/>
-    <users id="3" login="FawlerM" password="qwer2" first_name="Martin" last_name="Fawler" email="mfawler@gmail.com" enabled="true"/>
-    <users id="4" login="BorisovE" password="qwer5" first_name="Evgeniy" last_name="Borisov" email="eborisov@rambler.ru" enabled="true"/>
+    <account id="1" login="JoshuaB" password="qwer" first_name="Joshua" last_name="Bloch" email="jbloch@email.ua" enabled="false" />
+    <account id="2" login="TorvaldsL " password="qwer4" first_name="Linus" last_name="Torvalds" email="ltorvalds@linux.org" enabled="true"/>
+    <account id="3" login="FawlerM" password="qwer2" first_name="Martin" last_name="Fawler" email="mfawler@gmail.com" enabled="true"/>
+    <account id="4" login="BorisovE" password="qwer5" first_name="Evgeniy" last_name="Borisov" email="eborisov@rambler.ru" enabled="true"/>
 </dataset>

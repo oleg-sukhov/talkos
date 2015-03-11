@@ -34,7 +34,7 @@ public class RepositoryConfig {
     public static final String DB_PASSWORD_KEY = "database.connection.password";
 
     @Resource
-    private Environment env;
+    protected Environment env;
 
     @Bean
     public DataSource dataSource() throws IOException {

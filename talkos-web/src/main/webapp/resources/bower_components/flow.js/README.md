@@ -2,7 +2,7 @@
 
 Flow.js is a JavaScript library providing multiple simultaneous, stable and resumable uploads via the HTML5 File API. 
 
-The library is designed to introduce fault-tolerance into the upload of large files through HTTP. This is done by splitting each file into small chunks. Then, whenever the upload of a chunk fails, uploading is retried until the procedure completes. This allows uploads to automatically resume uploading after a network connection is lost either locally or to the server. Additionally, it allows for users to pause, resume and even recover uploads without losing state because only the currently uploading chunks will be aborted, not the entire upload.
+The library is designed to introduce fault-tolerance into the upload of large files through HTTP. This is done by splitting each file into small chunks. Then, whenever the upload of a chunk fails, uploading is retried until the procedure completes. This allows uploads to automatically resume uploading after a network connection is lost either locally or to the server. Additionally, it allows for accounts to pause, resume and even recover uploads without losing state because only the currently uploading chunks will be aborted, not the entire upload.
 
 Flow.js does not have any external dependencies other than the `HTML5 File API`. This is relied on for the ability to chunk files into smaller pieces. Currently, this means that support is limited to Firefox 4+, Chrome 11+, Safari 6+ and Internet Explorer 10+.
 
@@ -58,7 +58,7 @@ flow.on('fileError', function(file, message){
 ```
 ## How do I set it up with my server?
 
-Most of the magic for Flow.js happens in the user's browser, but files still need to be reassembled from chunks on the server side. This should be a fairly simple task and can be achieved in any web framework or language, which is able to receive file uploads.
+Most of the magic for Flow.js happens in the account's browser, but files still need to be reassembled from chunks on the server side. This should be a fairly simple task and can be achieved in any web framework or language, which is able to receive file uploads.
 
 To handle the state of upload chunks, a number of extra parameters are sent along with all requests:
 
@@ -138,7 +138,7 @@ parameter must be adjusted together with `progressCallbacksInterval` parameter. 
 * `.support` A boolean value indicator whether or not Flow.js is supported by the current browser.
 * `.supportDirectory` A boolean value, which indicates if browser supports directory uploads.
 * `.opts` A hash object of the configuration of the Flow.js instance.
-* `.files` An array of `FlowFile` file objects added by the user (see full docs for this object type below).
+* `.files` An array of `FlowFile` file objects added by the account (see full docs for this object type below).
 
 #### Methods
 
@@ -147,7 +147,7 @@ parameter must be adjusted together with `progressCallbacksInterval` parameter. 
   * `isDirectory` Pass in `true` to allow directories to be selected (Chrome only, support can be checked with `supportDirectory` property).
   * `singleFile` To prevent multiple file uploads set this to true. Also look at config parameter `singleFile`.
   * `attributes` Pass object of keys and values to set custom attributes on input fields.
-   For example, you can set `accept` attribute to `image/*`. This means that user will be able to select only images.
+   For example, you can set `accept` attribute to `image/*`. This means that account will be able to select only images.
    Full list of attributes: http://www.w3.org/TR/html-markup/input.file.html#input.file-attributes
 
    Note: avoid using `a` and `button` tags as file upload buttons, use span instead.

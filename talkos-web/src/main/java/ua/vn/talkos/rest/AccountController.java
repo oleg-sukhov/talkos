@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ua.vn.talkos.dto.UserDto;
-import ua.vn.talkos.service.UserService;
+import ua.vn.talkos.dto.AccountDto;
+import ua.vn.talkos.service.AccountService;
 
 import javax.annotation.Resource;
 
@@ -14,17 +14,17 @@ import javax.annotation.Resource;
  * @author oleg.sukhov
  */
 @RestController
-public class UserRestController {
+public class AccountController {
 
     @Resource
-    private UserService userService;
+    private AccountService accountService;
 
     @RequestMapping(
             value = "/register",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public void save(@RequestBody UserDto userDto) {
-        userService.save(userDto);
+    public void save(@RequestBody AccountDto accountDto) {
+        accountService.save(accountDto);
     }
 }

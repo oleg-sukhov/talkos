@@ -1,9 +1,9 @@
 angular.module('talkos')
-    .controller('RegistrationController', ['$scope', '$location', 'UserService',
-        function ($scope, $location, UserService) {
+    .controller('RegistrationController', ['$scope', '$location', 'AccountService',
+        function ($scope, $location, AccountService) {
 
             $scope.save = function() {
-                UserService.save($scope.data);
+                AccountService.save($scope.data);
             };
 
             $scope.cancel = function() {
