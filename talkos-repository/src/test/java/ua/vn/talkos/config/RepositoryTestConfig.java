@@ -43,9 +43,9 @@ public class RepositoryTestConfig extends RepositoryConfig {
     @Override
     protected Properties jpaProperties() {
         Properties jpaProps = new Properties();
-        jpaProps.put("eclipselink.target-database", "org.eclipse.persistence.platform.database.H2Platform");
+        jpaProps.put("eclipselink.target-database", "org.eclipse.persistence.platform.database.PostgreSQLPlatform");
         jpaProps.put("eclipselink.weaving", "static");
-        jpaProps.put("eclipselink.ddl-generation", "drop-and-create-tables");
+//        jpaProps.put("eclipselink.ddl-generation", "drop-and-create-tables");
         jpaProps.put("eclipselink.logging.level.sql", "FINE");
         jpaProps.put("eclipselink.logging.parameters", "true");
         return jpaProps;
