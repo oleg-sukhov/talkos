@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ua.vn.talkos.util.contact.ContactStateEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * @author oleg.sukhov
@@ -18,4 +16,8 @@ public class Contact extends PersistableEntity {
 
     @Enumerated(EnumType.STRING)
     private ContactStateEnum state;
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

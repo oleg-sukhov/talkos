@@ -23,8 +23,8 @@ flyway {
 
     user = 'os'
     password = 'satellite'
-//    url = 'jdbc:postgresql://localhost:5432/talkos'
-    url = 'jdbc:postgresql://localhost:5432/talkos_test'
+    url = 'jdbc:postgresql://localhost:5432/talkos'
+//    url = 'jdbc:postgresql://localhost:5432/talkos_test'
     locations = ['classpath:ua/vn/talkos/sql']
 }
 
