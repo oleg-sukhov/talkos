@@ -7,6 +7,8 @@ angular.module('talkos')
                 var successCallback = function (response) {
                     var isAuthenticated = response.authenticated;
                     $rootScope.isAuthenticated = isAuthenticated;
+                    $rootScope.loggedUser = response.loggedAccount;
+
                     isAuthenticated ? deferred.resolve() : failureCallback(response);
                 };
 

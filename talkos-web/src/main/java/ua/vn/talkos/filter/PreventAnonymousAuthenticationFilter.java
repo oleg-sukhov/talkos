@@ -45,8 +45,8 @@ public class PreventAnonymousAuthenticationFilter extends GenericFilterBean {
 
         if(urlChecker.checkUrl(url) && authenticationTrustResolver.isAnonymous(authentication)) {
             httpResponse.setStatus(OK.value());
-            AuthenticationJsonResponse jsonResponse = new AuthenticationJsonResponse(false, UNAUTHORIZED);
-            httpResponse.getOutputStream().write(jsonMapper.writeValueAsBytes(jsonResponse));
+            httpResponse.getOutputStream().write(
+                    jsonMapper.writeValueAsBytes(AuthenticationJsonResponse.create(false, UNAUTHORIZED, null)));
             return;
         }
 

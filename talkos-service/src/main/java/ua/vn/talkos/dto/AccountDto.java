@@ -3,6 +3,9 @@ package ua.vn.talkos.dto;
 import lombok.Data;
 import ua.vn.talkos.entity.Account;
 
+import javax.accessibility.AccessibleAction;
+import java.util.Optional;
+
 /**
  * @author oleg.sukhov
  */
@@ -16,6 +19,12 @@ public class AccountDto implements BaseDto<Account> {
     private String avatarPath;
     private boolean enabled;
 
+    public AccountDto(Optional<Account> accountOpt) {
+        if(accountOpt.isPresent()) {
+            fromEntity(accountOpt.get());
+        }
+    }
+
     @Override
     public Account toEntity() {
         Account account = new Account();
@@ -27,5 +36,16 @@ public class AccountDto implements BaseDto<Account> {
         account.setAvatarPath(avatarPath);
         account.setEnabled(enabled);
         return account;
+    }
+
+    @Override
+    public BaseDto fromEntity(Account account) {
+        this.setLogin(account.getLogin());
+        this.setFirstName(account.getFirstName());
+        this.setLastName(account.getLastName());
+        this.setEmail(account.getEmail());
+        this.setAvatarPath(account.getAvatarPath());
+        this.setEnabled(account.isEnabled());
+        return this;
     }
 }

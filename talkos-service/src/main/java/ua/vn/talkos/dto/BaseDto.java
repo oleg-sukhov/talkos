@@ -7,4 +7,5 @@ import ua.vn.talkos.entity.PersistableEntity;
  */
 public interface BaseDto<T extends PersistableEntity> {
     public T toEntity();
+    public BaseDto fromEntity(T entity);
 }

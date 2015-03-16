@@ -1,5 +1,13 @@
 <div class="container-fluid">
-    <button class="btn btn-warning control-btn" ng-click="logout()">
-        <span class="glyphicon glyphicon-remove-circle"></span> Logout
-    </button>
+    <div class="panel home-panel panel-primary">
+        <div class="panel-heading home-panel-heading">
+            <span class="title">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
+            <button class="btn btn-danger btn-sm" ng-click="logout()">
+                <span class="glyphicon glyphicon-remove-circle"></span> Logout
+            </button>
+        </div>
+        <div class="panel-body registration-body">
+
+        </div>
+    </div>
 </div>

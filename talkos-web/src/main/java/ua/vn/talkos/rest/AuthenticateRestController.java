@@ -7,6 +7,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ua.vn.talkos.dto.AccountDto;
+import ua.vn.talkos.entity.Account;
 import ua.vn.talkos.security.AuthenticationJsonResponse;
 
 import java.util.Optional;
@@ -30,8 +32,10 @@ public class AuthenticateRestController {
 
     private AuthenticationJsonResponse createAuthenticationJsonResponse(Optional<Authentication> authOpt) {
         if(authOpt.isPresent()) {
-            return new AuthenticationJsonResponse(authOpt.get().isAuthenticated(), HttpStatus.OK);
+            Authentication auth = authOpt.get();
+            Optional<Account> accountOpt = Optional.ofNullable((Account) auth.getPrincipal());
+            return AuthenticationJsonResponse.create(auth.isAuthenticated(), HttpStatus.OK, new AccountDto(accountOpt));
         }
-        return new AuthenticationJsonResponse(false, HttpStatus.UNAUTHORIZED);
+        return AuthenticationJsonResponse.create(false, HttpStatus.UNAUTHORIZED, null);
     }
 }
