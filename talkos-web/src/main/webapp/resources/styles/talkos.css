@@ -2,6 +2,8 @@
 
 html, body {
     background-image: url(../images/background.jpg);
+    overflow: hidden;
+
 }
 
 /*Login page styles (start)*/
@@ -83,9 +85,12 @@ html, body {
 /*home page styles (start)*/
 
 .home-panel {
+    position: absolute;
     width: 78%;
+    height: 92%;
     margin-left: 11%;
     margin-top: 2%;
+    display: block;
 }
 
 .panel-heading.home-panel-heading {
@@ -102,5 +107,19 @@ html, body {
 .panel-heading > .btn {
     float: right;
 }
+
+.contact-list {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: auto;
+}
+
+.home-panel > .panel-body,
+.home-panel > .panel-body > .row,
+.home-panel > .panel-body > .row > .col-md-3 {
+    height: inherit;
+}
+
 
 /*home page styles (end)*/
