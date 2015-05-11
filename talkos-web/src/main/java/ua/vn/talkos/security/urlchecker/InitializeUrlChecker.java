@@ -9,7 +9,7 @@ import javax.annotation.Resource;
  */
 @Component
 public class InitializeUrlChecker implements UrlCheckerChain {
-    public static final String INITIALIZE_URI = "/";
+    public static final String INITIALIZE_URI = "/WEB-INF/views/index.jsp";
 
     @Resource(name = "registerUserUrlChecker")
     private UrlCheckerChain nextChecker;

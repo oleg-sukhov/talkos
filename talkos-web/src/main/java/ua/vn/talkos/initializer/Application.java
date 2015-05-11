@@ -1,8 +1,10 @@
 package ua.vn.talkos.initializer;
 
-import org.springframework.web.WebApplicationInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -14,7 +16,12 @@ import java.util.EnumSet;
 /**
  * @author oleg.sukhov
  */
-public class ApplicationInitializer implements WebApplicationInitializer {
+@SpringBootApplication
+public class Application extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(WebConfig.class, args);
+    }
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -26,10 +33,16 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
 
+
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", characterEncodingFilter);
         characterEncoding.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
         characterEncoding.addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD), true, "/*");
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
     }
 }

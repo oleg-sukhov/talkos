@@ -30,8 +30,7 @@ flyway {
 
 dependencies {
     /*Spring*/
-    compile "org.springframework:spring-orm:$springVersion"
-    compile "org.springframework.data:spring-data-jpa:$springDataVersion"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
 
     /*PostgeSQL*/
     compile "org.postgresql:postgresql:$postgreSQLVersion"

@@ -1,14 +1,24 @@
-apply plugin: 'war'
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
 
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/libs-release"}
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'spring-boot'
 war {
     baseName = 'talkos'
+    version = '0.0.1'
 }
 
 dependencies {
     compile project(":talkos-service")
     compile "javax.servlet:javax.servlet-api:$servletVersion"
-    compile "org.springframework:spring-webmvc:$springVersion"
-    compile "org.springframework.security:spring-security-web:$springSecurityVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabind"
-
+    runtime "org.apache.tomcat.embed:tomcat-embed-jasper:8.0.20"
 }
