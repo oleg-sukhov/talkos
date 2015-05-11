@@ -109,15 +109,26 @@ html, body {
 }
 
 .contact-list {
-    position: relative;
-    display: block;
-    height: 100%;
-    overflow: auto;
+    position: inherit;
+    height: inherit;
+    width: 20%;
+    border: solid lightslategrey;
+    overflow: scroll;
 }
 
-.home-panel > .panel-body,
-.home-panel > .panel-body > .row,
-.home-panel > .panel-body > .row > .col-md-3 {
+.tab-holder {
+    position: inherit;
+    height: inherit;
+    width: 80%;
+    border: solid lightslategrey;
+}
+
+.home-panel > .home-panel-body {
+    height: inherit;
+    width: 100%;
+}
+
+.home-panel-body {
     height: inherit;
 }
 

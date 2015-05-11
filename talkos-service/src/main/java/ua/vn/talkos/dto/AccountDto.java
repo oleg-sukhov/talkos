@@ -19,6 +19,9 @@ public class AccountDto implements BaseDto<Account> {
     private String avatarPath;
     private boolean enabled;
 
+    public AccountDto() {
+    }
+
     public AccountDto(Optional<Account> accountOpt) {
         if(accountOpt.isPresent()) {
             fromEntity(accountOpt.get());
