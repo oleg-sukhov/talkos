@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -16,6 +18,9 @@ import java.util.EnumSet;
 /**
  * @author oleg.sukhov
  */
+@PropertySources({
+    @PropertySource(value = "classpath:/ua/vn/talkos/application.properties")
+})
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 

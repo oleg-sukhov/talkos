@@ -1,5 +1,7 @@
 package ua.vn.talkos.filter;
 
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -16,6 +18,7 @@ import java.io.IOException;
  * @author oleg.sukhov
  */
 @Component
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class CsrfCookiesFilter extends OncePerRequestFilter {
     public static final String XSRF_TOKEN_COOKIE_KEY = "XSRF-TOKEN";
 

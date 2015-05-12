@@ -42,10 +42,10 @@ angular.module('talkos')
                         'Content-type': 'application/x-www-form-urlencoded'
                     },
                     data: data
-                }).success(function (data, status, headers) {
+                }).success(function () {
                     $location.path(pathToRedirect);
                     controllerScope.error = false;
-                }).error(function (data, status, headers) {
+                }).error(function () {
                     $location.path("/login");
                     controllerScope.error = true;
                     controllerScope.loginErrorAlert = {
